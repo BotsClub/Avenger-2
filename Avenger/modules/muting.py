@@ -2,8 +2,8 @@ import html
 import re
 from typing import Optional
 
-from Executive import LOGGER, TIGERS, dispatcher
-from Executive.modules.helper_funcs.chat_status import (
+from Avenger import LOGGER, TIGERS, dispatcher
+from Avenger.modules.helper_funcs.chat_status import (
     bot_admin,
     can_restrict,
     connection_status,
@@ -11,12 +11,12 @@ from Executive.modules.helper_funcs.chat_status import (
     user_admin,
     user_admin_no_reply,
 )
-from Executive.modules.helper_funcs.extraction import (
+from Avenger.modules.helper_funcs.extraction import (
     extract_user,
     extract_user_and_text,
 )
-from Executive.modules.helper_funcs.string_handling import extract_time
-from Executive.modules.log_channel import loggable
+from Avenger.modules.helper_funcs.string_handling import extract_time
+from Avenger.modules.log_channel import loggable
 from telegram import (
     Bot,
     Chat,
@@ -328,11 +328,12 @@ dispatcher.add_handler(MUTE_HANDLER)
 dispatcher.add_handler(UNMUTE_HANDLER)
 dispatcher.add_handler(TEMPMUTE_HANDLER)
 dispatcher.add_handler(UNMUTE_BUTTON_HANDLER)
+
 __help__ = """
 *Admins only:*
 /mute <userhandle>*:* silences a user. Can also be used as a reply, muting the replied to user.
 /tmute <userhandle> x(m/h/d)*:* mutes a user for x time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
 /unmute <userhandle>*:* unmutes a user. Can also be used as a reply, muting the replied to user.
 """
-__mod_name__ = "ᴍᴜᴛɪɴɢ"
+__mod_name__ = "Mᴜᴛɪɴɢ"
 __handlers__ = [MUTE_HANDLER, UNMUTE_HANDLER, TEMPMUTE_HANDLER]
