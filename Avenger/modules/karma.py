@@ -1,16 +1,16 @@
 import re
 from pyrogram import filters
-from Executive import pbot as app
-from Executive.ex_plugins.errors import capture_err
-from Executive.utils.permissions import adminsOnly
-from Executive.ex_plugins.sections import section
-from Executive.ex_plugins.dbfunctions import (alpha_to_int, get_karma, get_karmas,
+from Avenger import pbot as app
+from Avenger.ex_plugins.errors import capture_err
+from Avenger.utils.permissions import adminsOnly
+from Avenger.ex_plugins.sections import section
+from Avenger.ex_plugins.dbfunctions import (alpha_to_int, get_karma, get_karmas,
                                    int_to_alpha, is_karma_on, karma_off,
                                    karma_on, update_karma)
-from Executive.utils.filter_groups import karma_negative_group, karma_positive_group
-from Executive.utils.functions import get_user_id_and_usernames
+from Avenger.utils.filter_groups import karma_negative_group, karma_positive_group
+from Avenger.utils.functions import get_user_id_and_usernames
 
-__mod_name__ = "ᴋᴀʀᴍᴀ"
+__mod_name__ = "Kᴀʀᴍᴀ"
 __help__ = """
 /karma [Reply to a message]: Check user's karma
 /karma: Chek karma list of top 10 users
