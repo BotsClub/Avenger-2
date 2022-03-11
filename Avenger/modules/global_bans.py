@@ -8,8 +8,8 @@ from telegram.error import BadRequest, TelegramError, Unauthorized
 from telegram.ext import CallbackContext, CommandHandler, Filters, MessageHandler
 from telegram.utils.helpers import mention_html
 
-import Executive.modules.no_sql.global_bans_db as gban_db
-from Executive import (
+import Avenger.modules.no_sql.global_bans_db as gban_db
+from Avenger import (
     DEMONS,
     DEV_USERS,
     DRAGONS,
@@ -23,18 +23,18 @@ from Executive import (
     dispatcher,
     sw,
 )
-from Executive.modules.helper_funcs.chatstatus import (
+from Avenger.modules.helper_funcs.chatstatus import (
     is_user_admin,
     support_plus,
     user_admin,
 )
-from Executive.modules.helper_funcs.decorators import executivemsg
-from Executive.modules.helper_funcs.extraction import (
+from Avenger.modules.helper_funcs.decorators import avengermsg
+from Avenger.modules.helper_funcs.extraction import (
     extract_user,
     extract_user_and_text,
 )
-from Executive.modules.helper_funcs.misc import send_to_list
-from Executive.modules.no_sql.users_db import get_user_com_chats
+from Avenger.modules.helper_funcs.misc import send_to_list
+from Avenger.modules.no_sql.users_db import get_user_com_chats
 
 GBAN_ENFORCE_GROUP = 6
 
@@ -442,7 +442,7 @@ def check_and_ban(update, user_id, should_message=True):
             update.effective_message.reply_text(text, parse_mode=ParseMode.HTML)
 
 
-@executivemsg(
+@avengermsg(
     (Filters.all & Filters.chat_type.groups),
     can_disable=False,
     group=GBAN_ENFORCE_GROUP,
@@ -578,7 +578,7 @@ __help__ = """
 /ungban <Reply with user Id> : Ungban a Gbanned User
 /gbanlist : For Getting Gban list
 """
-__mod_name__ = "ɢʙᴀɴ"
+__mod_name__ = "G-ʙᴀɴ"
 
 GBAN_HANDLER = CommandHandler("gban", gban, run_async=True)
 UNGBAN_HANDLER = CommandHandler("ungban", ungban, run_async=True)
