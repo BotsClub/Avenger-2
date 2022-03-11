@@ -4,7 +4,7 @@ import re
 import time
 from functools import partial
 from io import BytesIO
-import Executive.modules.sql.welcome_sql as sql
+import Avenger.modules.sql.welcome_sql as sql
 from Executive import (
     DEV_USERS,
     OWNER_ID,
@@ -15,19 +15,19 @@ from Executive import (
     LOGGER,
     dispatcher,
 )
-from Executive.modules.helper_funcs.chat_status import (
+from Avenger.modules.helper_funcs.chat_status import (
     is_user_ban_protected,
     user_admin,
 )
-from Executive.modules.helper_funcs.misc import build_keyboard, revert_buttons
-from Executive.modules.helper_funcs.msg_types import get_welcome_type
-from Executive.modules.helper_funcs.handlers import MessageHandlerChecker
-from Executive.modules.helper_funcs.string_handling import (
+from Avenger.modules.helper_funcs.misc import build_keyboard, revert_buttons
+from Avenger.modules.helper_funcs.msg_types import get_welcome_type
+from Avenger.modules.helper_funcs.handlers import MessageHandlerChecker
+from Avenger.modules.helper_funcs.string_handling import (
     escape_invalid_curly_brackets,
     markdown_parser,
 )
-from Executive.modules.log_channel import loggable
-from Executive.modules.no_sql.global_bans_db import is_user_gbanned
+from Avenger.modules.log_channel import loggable
+from Avenger.modules.no_sql.global_bans_db import is_user_gbanned
 from telegram import (
     ChatPermissions,
     InlineKeyboardButton,
@@ -1329,7 +1329,7 @@ dispatcher.add_handler(BUTTON_VERIFY_HANDLER)
 dispatcher.add_handler(WELCOME_MUTE_HELP)
 dispatcher.add_handler(CAPTCHA_BUTTON_VERIFY_HANDLER)
 
-__mod_name__ = "ᴡᴇʟᴄᴏᴍᴇ"
+__mod_name__ = "Wᴇʟᴄᴏᴍᴇ"
 __command_list__ = []
 __handlers__ = [
     NEW_MEM_HANDLER,
