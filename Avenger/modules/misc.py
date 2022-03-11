@@ -4,9 +4,9 @@ import re
 import codecs
 from typing import List
 from random import randint
-from Executive.modules.helper_funcs.chat_status import user_admin
-from Executive.modules.disable import DisableAbleCommandHandler
-from Executive import (
+from Avenger.modules.helper_funcs.chat_status import user_admin
+from Avenger.modules.disable import DisableAbleCommandHandler
+from Avenger import (
     dispatcher,
     WALL_API,
 )
@@ -27,9 +27,9 @@ from telegram import (
 from telegram.error import BadRequest
 from telegram.ext.dispatcher import run_async
 from telegram.ext import CallbackContext, Filters, CommandHandler
-from Executive import StartTime
-from Executive.modules.helper_funcs.chat_status import sudo_plus
-from Executive.modules.helper_funcs.alternate import send_action, typing_action
+from Avenger import StartTime
+from Avenger.modules.helper_funcs.chat_status import sudo_plus
+from Avenger.modules.helper_funcs.alternate import send_action, typing_action
 
 MARKDOWN_HELP = f"""
 Markdown is a very powerful formatting tool supported by telegram. {dispatcher.bot.first_name} has some enhancements, to make sure that \
