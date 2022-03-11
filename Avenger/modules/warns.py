@@ -3,9 +3,9 @@ import re
 from typing import Optional
 
 import telegram
-from Executive import TIGERS, WOLVES, dispatcher
-from Executive.modules.disable import DisableAbleCommandHandler
-from Executive.modules.helper_funcs.chat_status import (
+from Avenger import TIGERS, WOLVES, dispatcher
+from Avenger.modules.disable import DisableAbleCommandHandler
+from Avenger.modules.helper_funcs.chat_status import (
     bot_admin,
     can_restrict,
     is_user_admin,
@@ -14,16 +14,16 @@ from Executive.modules.helper_funcs.chat_status import (
     user_admin_no_reply,
     can_delete,
 )
-from Executive.modules.helper_funcs.extraction import (
+from Avenger.modules.helper_funcs.extraction import (
     extract_text,
     extract_user,
     extract_user_and_text,
 )
-from Executive.modules.helper_funcs.filters import CustomFilters
-from Executive.modules.helper_funcs.misc import split_message
-from Executive.modules.helper_funcs.string_handling import split_quotes
-from Executive.modules.log_channel import loggable
-from Executive.modules.sql import warns_sql as sql
+from Avenger.modules.helper_funcs.filters import CustomFilters
+from Avenger.modules.helper_funcs.misc import split_message
+from Avenger.modules.helper_funcs.string_handling import split_quotes
+from Avenger.modules.log_channel import loggable
+from Avenger.modules.sql import warns_sql as sql
 from telegram import (
     CallbackQuery,
     Chat,
@@ -45,7 +45,7 @@ from telegram.ext import (
     run_async,
 )
 from telegram.utils.helpers import mention_html
-from Executive.modules.sql.approve_sql import is_approved
+from Avenger.modules.sql.approve_sql import is_approved
 
 WARN_HANDLER_GROUP = 9
 CURRENT_WARNING_FILTER_STRING = "<b>Current warning filters in this chat:</b>\n"
@@ -504,7 +504,7 @@ __help__ = """
 /strongwarn <on/yes/off/no>: If set to on, exceeding the warn limit will result in a ban. Else, will just punch.
 """
 
-__mod_name__ = "ᴡᴀʀɴ"
+__mod_name__ = "Wᴀʀɴ"
 
 WARN_HANDLER = CommandHandler(
     ["warn", "dwarn"], warn_user, filters=Filters.chat_type.groups, run_async=True
