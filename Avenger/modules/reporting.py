@@ -1,9 +1,9 @@
 import html
 
-from Executive import LOGGER, DRAGONS, TIGERS, WOLVES, dispatcher
-from Executive.modules.helper_funcs.chat_status import user_admin, user_not_admin
-from Executive.modules.log_channel import loggable
-from Executive.modules.sql import reporting_sql as sql
+from Avenger import LOGGER, DRAGONS, TIGERS, WOLVES, dispatcher
+from Avenger.modules.helper_funcs.chat_status import user_admin, user_not_admin
+from Avenger.modules.log_channel import loggable
+from Avenger.modules.sql import reporting_sql as sql
 from telegram import Chat, InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.error import BadRequest, Unauthorized
 from telegram.ext import (
@@ -290,7 +290,7 @@ dispatcher.add_handler(SETTING_HANDLER)
 dispatcher.add_handler(REPORT_HANDLER, REPORT_GROUP)
 dispatcher.add_handler(ADMIN_REPORT_HANDLER, REPORT_GROUP)
 
-__mod_name__ = "ʀᴇᴘᴏʀᴛ"
+__mod_name__ = "Rᴇᴘᴏʀᴛ"
 __handlers__ = [
     (REPORT_HANDLER, REPORT_GROUP),
     (ADMIN_REPORT_HANDLER, REPORT_GROUP),
