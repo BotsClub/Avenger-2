@@ -7,9 +7,9 @@ from PIL import Image
 from pyrogram import filters
 from pyrogram.types import Message
 
-from Executive import pbot as app
-from Executive.utils.errors import capture_err
-from Executive.services.sections import section
+from Avenger import pbot as app
+from Avenger.utils.errors import capture_err
+from Avenger.services.sections import section
 
 
 async def convert(
@@ -38,7 +38,7 @@ async def convert(
         img.save(img_path, "JPEG", quality=100)
 
     pdf = BytesIO(img2pdf.convert(documents))
-    pdf.name = "NaoRobot.pdf"
+    pdf.name = "Avenger.pdf"
 
     if len(main_message.command) >= 2:
         pdf.name = main_message.text.split(None, 1)[1]
