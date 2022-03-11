@@ -7,10 +7,10 @@ from pykeyboard import InlineKeyboard
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton
 
-from Executive import aiohttpsession as session
-from Executive import pbot as app
-from Executive.utils.errors import capture_err
-from Executive.utils.pastebin import paste
+from Avenger import aiohttpsession as session
+from Avenger import pbot as app
+from Avenger.utils.errors import capture_err
+from Avenger.utils.pastebin import paste
 
 __mod_name__ = "Paste​"
 
