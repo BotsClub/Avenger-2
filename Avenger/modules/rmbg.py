@@ -6,8 +6,8 @@ import requests
 from telethon import types
 from telethon.tl import functions
 
-from Executive.events import register
-from Executive import telethn as tbot
+from Avenger.events import register
+from Avenger import telethn as tbot
 
 REM_BG_API_KEY = "vZThPiV3b5TbV7gHAFwRt1j3"
 TEMP_DOWNLOAD_DIRECTORY = "./"
@@ -100,4 +100,4 @@ __help__ = """
 *Remove Bacground Of JPG/JPEG Images*
 /rmbg <Reply with an Image> : For Removing Background
 """
-__mod_name__ = "ʀᴍʙɢ"
+__mod_name__ = "Rᴇᴍ-ʙɢ"
