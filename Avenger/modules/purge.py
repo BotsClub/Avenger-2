@@ -2,8 +2,8 @@ import asyncio
 import time
 from telethon import events
 
-from Executive import telethn
-from Executive.modules.helper_funcs.telethn.chatstatus import (
+from Avenger import telethn
+from Avenger.modules.helper_funcs.telethn.chatstatus import (
     can_delete_messages,
     user_is_admin,
 )
@@ -84,6 +84,6 @@ __help__ = """
 /del : Reply with a message which one you want to delete
 *NOTE:* Bot can delete the messages sent within 24 hours
 """
-__mod_name__ = "ᴘᴜʀɢᴇ"
+__mod_name__ = "Pᴜʀɢᴇ"
 __command_list__ = ["del", "purge"]
 __handlers__ = [PURGE_HANDLER, DEL_HANDLER]
