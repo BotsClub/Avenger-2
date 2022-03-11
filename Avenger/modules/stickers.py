@@ -13,8 +13,8 @@ from telegram import TelegramError, Update
 from telegram.ext import CallbackContext
 from telegram.utils.helpers import mention_html
 
-from Executive import dispatcher
-from Executive.modules.disable import DisableAbleCommandHandler
+from Avenger import dispatcher
+from Avenger.modules.disable import DisableAbleCommandHandler
 
 combot_stickers_url = "https://combot.org/telegram/stickers?q="
 
@@ -575,7 +575,7 @@ def delsticker(update, context):
         )
 
 
-__mod_name__ = "ꜱᴛɪᴄᴋᴇʀ"
+__mod_name__ = "Sᴛɪᴄᴋᴇʀ"
 
 __help__ = """
 *User Commands:*
