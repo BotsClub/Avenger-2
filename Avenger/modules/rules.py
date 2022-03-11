@@ -1,9 +1,9 @@
 from typing import Optional
 
-import Executive.modules.sql.rules_sql as sql
-from Executive import dispatcher
-from Executive.modules.helper_funcs.chat_status import user_admin
-from Executive.modules.helper_funcs.string_handling import markdown_parser
+import Avenger.modules.sql.rules_sql as sql
+from Avenger import dispatcher
+from Avenger.modules.helper_funcs.chat_status import user_admin
+from Avenger.modules.helper_funcs.string_handling import markdown_parser
 from telegram import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
@@ -140,7 +140,7 @@ Admins only:
 /setrules <your rules here>: set the rules for this chat.
 /clearrules: clear the rules for this chat.
 """
-__mod_name__ = "ʀᴜʟᴇꜱ"
+__mod_name__ = "Rᴜʟᴇꜱ"
 
 GET_RULES_HANDLER = CommandHandler(
     "rules", get_rules, filters=Filters.chat_type.groups, run_async=True
