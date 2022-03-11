@@ -3,8 +3,8 @@ import random
 from telegram import ParseMode
 from telethon import Button
 
-from Executive import OWNER_ID, SUPPORT_CHAT
-from Executive import telethn as tbot
+from Avenger import OWNER_ID, SUPPORT_CHAT
+from Avenger import telethn as tbot
 
 from ..events import register
 
@@ -15,7 +15,7 @@ async def feedback(e):
     user_id = e.sender.id
     user_name = e.sender.first_name
     mention = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
-    NATSUNAGI = (
+    AVENGER = (
         "https://telegra.ph/file/3eb2282a7c4df03a4c61e.jpg",
         "https://telegra.ph/file/3eb2282a7c4df03a4c61e.jpg",
         "https://telegra.ph/file/3eb2282a7c4df03a4c61e.jpg",
@@ -30,8 +30,8 @@ async def feedback(e):
         "https://telegra.ph/file/3eb2282a7c4df03a4c61e.jpg",
         "https://telegra.ph/file/3eb2282a7c4df03a4c61e.jpg",
     )
-    NATFEED = ("https://telegra.ph/file/2dd04f407b16bc2cfdf76.jpg",)
-    BUTTON = [[Button.url("ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ", f"https://t.me/ExecutiveRobot?startgroup=new")]]
+    AVENGERFEED = ("https://telegra.ph/file/2dd04f407b16bc2cfdf76.jpg",)
+    BUTTON = [[Button.url("ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ", f"https://t.me/AvengerBot?startgroup=new")]]
     TEXT = "**ᴛʜᴀɴᴋꜱ** ꜰᴏʀ ʏᴏᴜʀ **ꜰᴇᴇᴅʙᴀᴄᴋ**, ɪ ʜᴏᴘᴇ ʏᴏᴜ ᴀʀᴇ **ʜᴀᴘᴘʏ ᴡɪᴛʜ ᴏᴜʀ ꜱᴇʀᴠɪᴄᴇ**"
     GIVE = "Give Some Text For Feedback ✨"
     logger_text = f"""
@@ -46,20 +46,20 @@ async def feedback(e):
             GIVE,
             parse_mode=ParseMode.MARKDOWN,
             buttons=BUTTON,
-            file=random.choice(NATFEED),
+            file=random.choice(AVENGERFEED),
         ),
         return
 
     await tbot.send_message(
         SUPPORT_CHAT,
         f"{logger_text}",
-        file=random.choice(NATSUNAGI),
+        file=random.choice(AVENGER),
         link_preview=False,
     )
-    await e.reply(TEXT, file=random.choice(NATSUNAGI), buttons=BUTTON)
+    await e.reply(TEXT, file=random.choice(AVENGER), buttons=BUTTON)
 
 __help__ = """
 /feedback <Your Feedback message here> 
 *Note:* No need to send message to bot owner directly, you can give him feedback about hist bot via this amazing plugin.
 """
-__mod_name__ = "ꜰᴇᴇᴅʙᴀᴄᴋ"
+__mod_name__ = "Fᴇᴇᴅʙᴀᴄᴋ"
