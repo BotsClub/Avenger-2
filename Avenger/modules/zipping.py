@@ -5,9 +5,9 @@ import zipfile
 from telethon import types
 from telethon.tl import functions
 
-from Executive import TEMP_DOWNLOAD_DIRECTORY
-from Executive import telethn as client
-from Executive.events import register
+from Avenger import TEMP_DOWNLOAD_DIRECTORY
+from Avenger import telethn as client
+from Avenger.events import register
 
 
 async def is_register_admin(chat, user):
@@ -213,4 +213,4 @@ __help__ = """
 /zip <Reply with file> : For Zip any file
 /unzip <Reply with zipped file> : For Unzip any Zip file
 """
-__mod_name__ = "ᴢɪᴘᴘɪɴɢ"
+__mod_name__ = "Zɪᴘᴘɪɴɢ"
