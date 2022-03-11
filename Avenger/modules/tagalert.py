@@ -8,12 +8,12 @@ from pymongo import MongoClient
 from datetime import datetime, timedelta
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatPermissions
 
-from Executive import pbot
-from Executive import BOT_ID, MONGO_DB_URI
+from Avenger import pbot
+from Avenger import BOT_ID, MONGO_DB_URI
 
 
 client = MongoClient(MONGO_DB_URI)
-dbd = client["ExecutiveTag"]
+dbd = client["AvengerTag"]
 approved_users = dbd.approve
 db = dbd
 
