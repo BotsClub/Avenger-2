@@ -6,7 +6,7 @@ from telethon.errors import ChatAdminRequiredError, UserAdminInvalidError
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights, ChannelParticipantsAdmins
 
-from Executive import telethn, OWNER_ID, DEV_USERS, DRAGONS, DEMONS
+from Avenger import telethn, OWNER_ID, DEV_USERS, DRAGONS, DEMONS
 
 
 BANNED_RIGHTS = ChatBannedRights(
@@ -100,4 +100,4 @@ __help__ = """
 /zombies clean : Clean Deleted Accounts from Your Group
 /kickthefools : remove and ban in-active account from your group
 """
-__mod_name__ = "ᴢᴏᴍʙɪᴇꜱ"
+__mod_name__ = "Zᴏᴍʙɪᴇꜱ"
