@@ -3,14 +3,14 @@ from io import BytesIO
 import random
 from typing import Optional
 
-import Executive.modules.sql.notes_sql as sql
-from Executive import LOGGER, JOIN_LOGGER, SUPPORT_CHAT, dispatcher, DRAGONS
-from Executive.modules.disable import DisableAbleCommandHandler
-from Executive.modules.helper_funcs.handlers import MessageHandlerChecker
-from Executive.modules.helper_funcs.chat_status import user_admin, connection_status
-from Executive.modules.helper_funcs.misc import build_keyboard, revert_buttons
-from Executive.modules.helper_funcs.msg_types import get_note_type
-from Executive.modules.helper_funcs.string_handling import (
+import Avenger.modules.sql.notes_sql as sql
+from Avenger import LOGGER, JOIN_LOGGER, SUPPORT_CHAT, dispatcher, DRAGONS
+from Avenger.modules.disable import DisableAbleCommandHandler
+from Avenger.modules.helper_funcs.handlers import MessageHandlerChecker
+from Avenger.modules.helper_funcs.chat_status import user_admin, connection_status
+from Avenger.modules.helper_funcs.misc import build_keyboard, revert_buttons
+from Avenger.modules.helper_funcs.msg_types import get_note_type
+from Avenger.modules.helper_funcs.string_handling import (
     escape_invalid_curly_brackets,
 )
 from telegram import (
@@ -571,7 +571,7 @@ A button can be added to a note by using standard markdown link syntax - the lin
 *Note:* Note names are case-insensitive, and they are automatically converted to lowercase before getting saved.
 """
 
-__mod_name__ = "ɴᴏᴛᴇꜱ"
+__mod_name__ = "Nᴏᴛᴇꜱ"
 
 GET_HANDLER = CommandHandler("get", cmd_get, run_async=True)
 HASH_GET_HANDLER = MessageHandler(Filters.regex(r"^#[^\s]+"), hash_get, run_async=True)
