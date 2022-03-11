@@ -1,4 +1,4 @@
-import Executive.modules.sql.locks_sql as sql
+import Avenger.modules.sql.locks_sql as sql
 import html
 import ast
 
@@ -9,19 +9,19 @@ from telegram.ext import CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 from telegram.utils.helpers import mention_html
 from alphabet_detector import AlphabetDetector
-from Executive import dispatcher, DRAGONS, LOGGER
-from Executive.modules.disable import DisableAbleCommandHandler
-from Executive.modules.helper_funcs.chat_status import (
+from Avenger import dispatcher, DRAGONS, LOGGER
+from Avenger.modules.disable import DisableAbleCommandHandler
+from Avenger.modules.helper_funcs.chat_status import (
     can_delete,
     is_user_admin,
     user_not_admin,
     is_bot_admin,
     user_admin,
 )
-from Executive.modules.sql.approve_sql import is_approved
-from Executive.modules.log_channel import loggable
-from Executive.modules.connection import connected
-from Executive.modules.helper_funcs.alternate import send_message, typing_action
+from Avenger.modules.sql.approve_sql import is_approved
+from Avenger.modules.log_channel import loggable
+from Avenger.modules.connection import connected
+from Avenger.modules.helper_funcs.alternate import send_message, typing_action
 
 ad = AlphabetDetector()
 
@@ -546,7 +546,7 @@ Unlocking permission *info* will allow members (non-admins) to change the group 
 Unlocking permission *pin* will allow members (non-admins) to pinned a message in a group
 """
 
-__mod_name__ = "ʟᴏᴄᴋꜱ"
+__mod_name__ = "Lᴏᴄᴋꜱ"
 
 LOCKTYPES_HANDLER = DisableAbleCommandHandler("locktypes", locktypes, run_async=True)
 LOCK_HANDLER = CommandHandler(
