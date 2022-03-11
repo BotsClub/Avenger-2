@@ -9,9 +9,9 @@ from telegram import (
     InlineKeyboardMarkup,
     InlineKeyboardButton,
 )
-from Executive import dispatcher, pbot
+from Avenger import dispatcher, pbot
 from pyrogram import filters
-from Executive.modules.disable import DisableAbleCommandHandler
+from Avenger.modules.disable import DisableAbleCommandHandler
 
 
 __help__ = """ 
@@ -32,7 +32,7 @@ sm,sn,so,sq,sr,st,su,sv,sw,ta,te,tg,th,tl,tr,uk,ur,uz,
 vi,xh,yi,yo,zh,zh_CN,zh_TW,zu`
 """
 
-__mod_name__ = "ɢ-ᴛʀᴀɴꜱ"
+__mod_name__ = "G-ᴛʀᴀɴꜱ"
 
 
 trans = Translator()
