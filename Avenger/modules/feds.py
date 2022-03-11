@@ -7,8 +7,8 @@ import time
 import uuid
 from io import BytesIO
 
-import Executive.modules.sql.feds_sql as sql
-from Executive import (
+import Avenger.modules.sql.feds_sql as sql
+from Avenger import (
     EVENT_LOGS,
     LOGGER,
     SUPPORT_CHAT,
@@ -18,15 +18,15 @@ from Executive import (
     WOLVES,
     dispatcher,
 )
-from Executive.modules.disable import DisableAbleCommandHandler
-from Executive.modules.helper_funcs.alternate import send_message
-from Executive.modules.helper_funcs.chat_status import is_user_admin
-from Executive.modules.helper_funcs.extraction import (
+from Avenger.modules.disable import DisableAbleCommandHandler
+from Avenger.modules.helper_funcs.alternate import send_message
+from Avenger.modules.helper_funcs.chat_status import is_user_admin
+from Avenger.modules.helper_funcs.extraction import (
     extract_unt_fedban,
     extract_user,
     extract_user_fban,
 )
-from Executive.modules.helper_funcs.string_handling import markdown_parser
+from Avenger.modules.helper_funcs.string_handling import markdown_parser
 from telegram import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
@@ -42,16 +42,6 @@ from telegram.ext import (
     run_async,
 )
 from telegram.utils.helpers import mention_html, mention_markdown
-
-# Hello bot owner, I spended for feds many hours of my life, Please don't remove this if you still respect MrYacha and peaktogoo and AyraHikari too
-# Federation by MrYacha 2018-2019
-# Federation rework by Mizukito Akito 2019
-# Federation update v2 by Ayra Hikari 2019
-# Time spended on feds = 10h by #MrYacha
-# Time spended on reworking on the whole feds = 22+ hours by @peaktogoo
-# Time spended on updating version to v2 = 26+ hours by @AyraHikari
-# Total spended for making this features is 68+ hours
-# LOGGER.info("Original federation module by MrYacha, reworked by Mizukito Akito (@peaktogoo) on Telegram.")
 
 FBAN_ERRORS = {
     "User is an administrator of the chat",
@@ -2397,9 +2387,9 @@ def fed_user_help(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
         """*🎩 Any user:*
 
-❂ /fbanstat*:* Shows if you/or the user you are replying to or their username is fbanned somewhere or not
-❂ /fednotif <on/off>*:* Federation settings not in PM when there are users who are fbaned/unfbanned
-❂ /frules*:* See Federation regulations\n""",
+/fbanstat*:* Shows if you/or the user you are replying to or their username is fbanned somewhere or not
+/fednotif <on/off>*:* Federation settings not in PM when there are users who are fbaned/unfbanned
+/frules*:* See Federation regulations\n""",
         parse_mode=ParseMode.MARKDOWN,
     )
 
@@ -2411,7 +2401,7 @@ __help__ = """
 /fedadminhelp*:* Provides help for fed administration commands
 /feduserhelp*:* Provides help for commands anyone can use
 """
-__mod_name__ = "ꜰᴇᴅᴇʀᴀᴛɪᴏɴ"
+__mod_name__ = "Fᴇᴅᴇʀᴀᴛɪᴏɴ"
 
 
 NEW_FED_HANDLER = CommandHandler("newfed", new_fed, run_async=True)
