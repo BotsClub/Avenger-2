@@ -26,7 +26,7 @@ from telegram.ext.dispatcher import run_async
 from telegram.error import BadRequest
 from telegram.utils.helpers import escape_markdown, mention_html
 
-from Executive import (
+from Avenger import (
     DEV_USERS,
     OWNER_ID,
     DRAGONS,
@@ -39,16 +39,16 @@ from Executive import (
     StartTime,
     SUPPORT_CHAT,
 )
-from Executive.__main__ import STATS, TOKEN, USER_INFO
-from Executive.modules.sql import SESSION
-import Executive.modules.sql.userinfo_sql as sql
-from Executive.modules.disable import DisableAbleCommandHandler
-from Executive.modules.no_sql.global_bans_db import is_user_gbanned
-from Executive.modules.redis.afk_redis import afk_reason, is_user_afk
-from Executive.modules.no_sql.users_db import get_user_num_chats
-from Executive.modules.helper_funcs.chat_status import sudo_plus
-from Executive.modules.helper_funcs.extraction import extract_user
-from Executive import telethn
+from Avenger.__main__ import STATS, TOKEN, USER_INFO
+from Avenger.modules.sql import SESSION
+import Avenger.modules.sql.userinfo_sql as sql
+from Avenger.modules.disable import DisableAbleCommandHandler
+from Avenger.modules.no_sql.global_bans_db import is_user_gbanned
+from Avenger.modules.redis.afk_redis import afk_reason, is_user_afk
+from Avenger.modules.no_sql.users_db import get_user_num_chats
+from Avenger.modules.helper_funcs.chat_status import sudo_plus
+from Avenger.modules.helper_funcs.extraction import extract_user
+from Avenger import telethn
 
 
 def no_by_per(totalhp, percentage):
@@ -368,7 +368,7 @@ def info(update: Update, context: CallbackContext):
                         [
                             InlineKeyboardButton(
                                 "➕ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ➕",
-                                url="t.me/ExecutiveRobot?startgroup=new",
+                                url="t.me/AvengerBot?startgroup=new",
                             ),
                         ],
                     ]
@@ -386,7 +386,7 @@ def info(update: Update, context: CallbackContext):
                         [
                             InlineKeyboardButton(
                                 "➕ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ➕",
-                                url="t.me/ExecutiveRobot?startgroup=new",
+                                url="t.me/AvengerBot?startgroup=new",
                             ),
                         ],
                     ]
@@ -461,11 +461,11 @@ def set_about_me(update: Update, context: CallbackContext):
 
 @sudo_plus
 def stats(update: Update, context: CallbackContext):
-    stats = "<b>▬▬▬「   ᴇxᴇᴄᴜᴛɪᴠᴇ ꜱᴛᴀᴛꜱ   」▬▬▬</b>\n" + "\n".join(
+    stats = "<b>▬▬▬「   ᴀᴠᴇɴɢᴇʀ ꜱᴛᴀᴛꜱ   」▬▬▬</b>\n" + "\n".join(
         [mod.__stats__() for mod in STATS]
     )
     result = re.sub(r"(\d+)", r"<code>\1</code>", stats)
-    result += "\n<b>▬▬▬「   ᴇxᴇᴄᴜᴛɪᴠᴇ ꜱᴛᴀᴛꜱ   」▬▬▬</b>"
+    result += "\n<b>▬▬▬「   ᴀᴠᴇɴɢᴇʀ ꜱᴛᴀᴛꜱ   」▬▬▬</b>"
     VIDEO = "https://telegra.ph/file/c79585396e9871b817871.mp4"
     update.effective_message.reply_video(
         VIDEO,
@@ -613,7 +613,7 @@ dispatcher.add_handler(GET_BIO_HANDLER)
 dispatcher.add_handler(SET_ABOUT_HANDLER)
 dispatcher.add_handler(GET_ABOUT_HANDLER)
 
-__mod_name__ = "ɪɴꜰᴏ"
+__mod_name__ = "Iɴꜰᴏ"
 __command_list__ = ["setbio", "bio", "setme", "me", "info"]
 __handlers__ = [
     ID_HANDLER,
