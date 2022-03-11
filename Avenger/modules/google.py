@@ -20,10 +20,10 @@ from telethon.tl import functions
 from telethon.tl import types
 from telethon.tl.types import *
 
-from Executive import *
+from Avenger import *
 
-from Executive.events import register
-from Executive import telethn as tbot
+from Avenger.events import register
+from Avenger import telethn as tbot
 
 opener = urllib.request.build_opener()
 useragent = "Mozilla/5.0 (Linux; Android 9; SM-G960F Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.157 Mobile Safari/537.36"
@@ -268,7 +268,7 @@ async def apk(e):
             + app_link
             + "'>View in Play Store</a>"
         )
-        app_details += "\n\n===> ᴇxᴇᴄᴜᴛɪᴠᴇ ʀᴏʙᴏᴛ <==="
+        app_details += "\n\n===> ᴀᴠᴇɴɢᴇʀ ʙᴏᴛ <==="
         await e.reply(app_details, link_preview=True, parse_mode="HTML")
     except IndexError:
         await e.reply("No result found in search. Please enter **Valid app name**")
@@ -276,7 +276,7 @@ async def apk(e):
         await e.reply("Exception Occured:- " + str(err))
 
 
-__mod_name__ = "ɢᴏᴏɢʟᴇ"
+__mod_name__ = "Gᴏᴏɢʟᴇ"
 
 __help__ = """
 /google <query>*:* Perform a google search
