@@ -1,5 +1,5 @@
-from Executive.events import register
-from Executive import telethn
+from Avenger.events import register
+from Avenger import telethn
 
 TMP_DOWNLOAD_DIRECTORY = "./"
 from telethon import events
@@ -96,4 +96,4 @@ __help__ = """
 /txt :Get Telegraph Link of Replied Text
 """
 
-__mod_name__ = "ᴛᴇʟᴇɢʀᴀᴘʜ"
+__mod_name__ = "Tᴇʟᴇɢʀᴀᴘʜ"
