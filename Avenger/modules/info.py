@@ -3,9 +3,9 @@ import os
 from pyrogram import filters
 from pyrogram.types import Message
 
-from Executive import DEV_USERS
-from Executive import pbot as app
-from Executive.services.sections import section
+from Avenger import DEV_USERS
+from Avenger import pbot as app
+from Avenger.services.sections import section
 
 
 async def get_user_info(user, already=False):
