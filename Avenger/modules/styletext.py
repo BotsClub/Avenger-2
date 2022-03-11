@@ -1,6 +1,6 @@
-from Executive import dispatcher
-from Executive.modules.disable import DisableAbleCommandHandler
-from Executive.modules.helper_funcs.alternate import typing_action
+from Avenger import dispatcher
+from Avenger.modules.disable import DisableAbleCommandHandler
+from Avenger.modules.helper_funcs.alternate import typing_action
 from telegram import ParseMode
 from telegram.ext import run_async
 
@@ -484,7 +484,7 @@ __help__ = """
 /latin <some text or reply with text> : For Change the font
 /lined <some text or reply with text> : For Change the font
 """
-__mod_name__ = "ꜰᴏɴᴛ"
+__mod_name__ = "Fᴏɴᴛ"
 
 WEEBIFY_HANDLER = DisableAbleCommandHandler("weebify", weebify, run_async=True)
 BUBBLE_HANDLER = DisableAbleCommandHandler("bubble", bubble, run_async=True)
