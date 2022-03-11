@@ -1,7 +1,7 @@
 import speedtest
-from Executive import DEV_USERS, dispatcher
-from Executive.modules.disable import DisableAbleCommandHandler
-from Executive.modules.helper_funcs.chat_status import dev_plus
+from Avenger import DEV_USERS, dispatcher
+from Avenger.modules.disable import DisableAbleCommandHandler
+from Avenger.modules.helper_funcs.chat_status import dev_plus
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.ext import CallbackContext, CallbackQueryHandler
 
