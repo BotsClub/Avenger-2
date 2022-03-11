@@ -1,5 +1,5 @@
 import os
-from Executive.modules.sql.night_mode_sql import (
+from Avenger.modules.sql.night_mode_sql import (
     add_nightmode,
     rmnightmode,
     get_all_chat_id,
@@ -8,8 +8,8 @@ from Executive.modules.sql.night_mode_sql import (
 from telethon.tl.types import ChatBannedRights
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from telethon import functions
-from Executive.events import register
-from Executive import telethn as tbot, OWNER_ID
+from Avenger.events import register
+from Avenger import telethn as tbot, OWNER_ID
 from telethon import Button, custom, events
 
 hehes = ChatBannedRights(
