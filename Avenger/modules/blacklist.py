@@ -448,9 +448,10 @@ def __stats__():
     )
 
 
-__mod_name__ = "ʙ-ᴡᴏʀᴅꜱ"
+__mod_name__ = "B-ᴡᴏʀᴅꜱ"
 
 __help__ = """
+*Blacklist Words*
 /blacklist*:* View the current blacklisted words.
 *Admin only:*
 /addblacklist <triggers>*:* Add a trigger to the blacklist. Each line is considered one trigger, so using different lines will allow you to add multiple triggers.
