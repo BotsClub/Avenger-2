@@ -5,11 +5,11 @@ from telegram import TelegramError, Update, ParseMode
 from telegram.error import BadRequest, Unauthorized
 from telegram.ext import CallbackContext, Filters
 
-import Executive.modules.no_sql.users_db as user_db
-from Executive import DEV_USERS, LOGGER, OWNER_ID, dispatcher
-from Executive.modules.helper_funcs.chatstatus import dev_plus, sudo_plus
-from Executive.modules.no_sql.users_db import get_all_users
-from Executive.modules.helper_funcs.decorators import executivecmd, executivemsg
+import Avenger.modules.no_sql.users_db as user_db
+from Avenger import DEV_USERS, LOGGER, OWNER_ID, dispatcher
+from Avenger.modules.helper_funcs.chatstatus import dev_plus, sudo_plus
+from Avenger.modules.no_sql.users_db import get_all_users
+from Avenger.modules.helper_funcs.decorators import avengercmd, avengermsg
 
 
 USERS_GROUP = 4
@@ -46,7 +46,7 @@ def get_user_id(username):
     return None
 
 
-@executivecmd(command=["broadcastall", "broadcastusers", "broadcastgroups"])
+@avengercmd(command=["broadcastall", "broadcastusers", "broadcastgroups"])
 @dev_plus
 def broadcast(update: Update, context: CallbackContext):
     to_send = update.effective_message.text.split(None, 1)
@@ -94,7 +94,7 @@ def broadcast(update: Update, context: CallbackContext):
         )
 
 
-@executivemsg((Filters.all & Filters.chat_type.groups), group=USERS_GROUP)
+@avengermsg((Filters.all & Filters.chat_type.groups), group=USERS_GROUP)
 def log_user(update: Update, context: CallbackContext):
     chat = update.effective_chat
     msg = update.effective_message
@@ -113,7 +113,7 @@ def log_user(update: Update, context: CallbackContext):
         user_db.update_user(msg.forward_from.id, msg.forward_from.username)
 
 
-@executivecmd(command="groups")
+@avengercmd(command="groups")
 @sudo_plus
 def chats(update: Update, context: CallbackContext):
     all_chats = user_db.get_all_chats() or []
@@ -143,7 +143,7 @@ def chats(update: Update, context: CallbackContext):
         )
 
 
-@executivemsg((Filters.all & Filters.chat_type.groups), group=CHAT_GROUP)
+@avengermsg((Filters.all & Filters.chat_type.groups), group=CHAT_GROUP)
 def chat_checker(update: Update, context: CallbackContext):
     bot = context.bot
     try:
