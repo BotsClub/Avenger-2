@@ -9,10 +9,10 @@ from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
 from telegram.inline.inlinekeyboardmarkup import InlineKeyboardMarkup
 from telegram.utils.helpers import mention_html
 
-from Executive import dispatcher
-from Executive.modules.helper_funcs.decorators import executivecallback
-from Executive.modules.helper_funcs.chat_status import user_can_restrict_no_reply, bot_admin
-from Executive.modules.log_channel import loggable
+from Avenger import dispatcher
+from Avenger.modules.helper_funcs.decorators import avengercallback
+from Avenger.modules.helper_funcs.chat_status import user_can_restrict_no_reply, bot_admin
+from Avenger.modules.log_channel import loggable
 
 
 def chat_join_req(upd: Update, ctx: CallbackContext):
@@ -41,7 +41,7 @@ def chat_join_req(upd: Update, ctx: CallbackContext):
     )
 
 
-@executivecallback(pattern=r"cb_approve=")
+@avengercallback(pattern=r"cb_approve=")
 @user_can_restrict_no_reply
 @bot_admin
 @loggable
@@ -72,7 +72,7 @@ def approve_joinreq(update: Update, context: CallbackContext) -> str:
         pass
 
 
-@executivecallback(pattern=r"cb_decline=")
+@avengercallback(pattern=r"cb_decline=")
 @user_can_restrict_no_reply
 @bot_admin
 @loggable
