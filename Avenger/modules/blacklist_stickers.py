@@ -505,6 +505,7 @@ def __stats__():
 
 
 __help__ = """
+*Blacklist Sticker*
 /blsticker*:* See current blacklisted sticker
 *Only admin:*
 /addblsticker <sticker link>*:* Add the sticker trigger to the black list. Can be added via reply sticker
