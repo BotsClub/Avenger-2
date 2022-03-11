@@ -6,7 +6,7 @@ from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin
 from telethon.tl.types import ChannelParticipantCreator
 
-from Executive import telethn as client
+from Avenger import telethn as client
 
 spam_chats = []
 
@@ -96,7 +96,7 @@ async def cancel_spam(event):
         return await event.respond("__Stopped Mention.__")
 
 
-__mod_name__ = "ᴛᴀɢᴀʟʟ"
+__mod_name__ = "Tᴀɢᴀʟʟ"
 __help__ = """
 /tagall or @all (reply to message or add another message) To mention all members in your group, without exception.
 /cancel : for canceling the mention-all.
