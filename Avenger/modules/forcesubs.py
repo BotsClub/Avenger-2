@@ -10,9 +10,9 @@ from pyrogram.errors.exceptions.bad_request_400 import (
 )
 from pyrogram.types import ChatPermissions, InlineKeyboardButton, InlineKeyboardMarkup
 
-from Executive import DRAGONS as SUDO_USERS
-from Executive import pbot
-from Executive.modules.sql import forceSubscribe_sql as sql
+from Avenger import DRAGONS as SUDO_USERS
+from Avenger import pbot
+from Avenger.modules.sql import forceSubscribe_sql as sql
 
 PHOTO = "https://telegra.ph/file/256e899907a0268251e11.jpg"
 
@@ -111,7 +111,7 @@ def _check_member(client, message):
                     )
                 except ChatAdminRequired:
                     sent_message.edit(
-                        "😕 **Executive is not admin here..**\n__Give me ban permissions and retry.. \n#Ending FSub...__"
+                        "😕 **Avenger is not admin here..**\n__Give me ban permissions and retry.. \n#Ending FSub...__"
                     )
 
             except ChatAdminRequired:
@@ -190,4 +190,4 @@ __help__ = """
 *NOTE:* Add me in your group as admin
 *NOTE:* Add me in your channel as admin 
 """
-__mod_name__ = "ꜰ-ꜱᴜʙ"
+__mod_name__ = "F-ꜱᴜʙ"
