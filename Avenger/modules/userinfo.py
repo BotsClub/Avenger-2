@@ -466,7 +466,7 @@ def stats(update: Update, context: CallbackContext):
     )
     result = re.sub(r"(\d+)", r"<code>\1</code>", stats)
     result += "\n<b>▬▬▬「   ᴀᴠᴇɴɢᴇʀ ꜱᴛᴀᴛꜱ   」▬▬▬</b>"
-    VIDEO = "https://telegra.ph/file/c79585396e9871b817871.mp4"
+    VIDEO = "https://telegra.ph/file/e69946a2f97faf50e31b6.mp4"
     update.effective_message.reply_video(
         VIDEO,
         caption=result,
