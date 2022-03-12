@@ -78,8 +78,8 @@ def get_readable_time(seconds: int) -> str:
     return ping_time
 
 
-PM_START_TEXT = """━━━━━━━ *ᴇxᴇᴄᴜᴛɪᴠᴇ* ━━━━━━━
-[ᴇxᴇᴄᴜᴛɪᴠᴇ ʀᴏʙᴏᴛ](t.me/ExecutiveRobot) ɪꜱ ᴀɴ ᴀɴɪᴍᴀᴛᴇᴅ
+PM_START_TEXT = """━━━━━━━ *ᴀᴠᴇɴɢᴇʀ* ━━━━━━━
+[ᴀᴠᴇɴɢᴇʀ ʀᴏʙᴏᴛ](t.me/AvengerBot) ɪꜱ ᴀɴ ᴀɴɪᴍᴀᴛᴇᴅ
 ᴛʜᴇᴍᴇᴅ ɢʀᴏᴜᴘ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ ʙᴏᴛ 
  ᴡʜɪᴄʜ ᴄᴀɴ ʜᴇʟᴘ ʏᴏᴜ ᴛᴏ ᴍᴀɴᴀɢᴇ
       ᴀɴᴅ ꜱᴇᴄᴜʀᴇ ʏᴏᴜʀ ɢʀᴏᴜᴘ
@@ -87,16 +87,16 @@ PM_START_TEXT = """━━━━━━━ *ᴇxᴇᴄᴜᴛɪᴠᴇ* ━━━━
    ᴘʟᴜɢɪɴꜱ ʟɪᴋᴇ ; *ꜰɪʟᴛᴇʀꜱ* , *ɴᴏᴛᴇꜱ* , 
    *ᴡᴇᴄᴏᴍᴇ* , *ɢᴏᴏᴅ ʙʏᴇ* , *ʙᴀɴɴɪɴɢ* , 
         *ᴍᴜᴛɪɴɢ* ᴀɴᴅ ᴍᴀɴʏ ᴍᴏʀᴇ.
-━━━━━━━ *ᴇxᴇᴄᴜᴛɪᴠᴇ* ━━━━━━━
+━━━━━━━ *ᴀᴠᴇɴɢᴇʀ* ━━━━━━━
                ≛≛  *ᴜꜱᴇʀꜱ:*   `0{}`
                ≛≛  *ᴄʜᴀᴛꜱ:*   `00{}`
 """
 
 buttons = [
     [
-        InlineKeyboardButton(text="🏡", callback_data="executive_back"),
-        InlineKeyboardButton(text="🛡️", callback_data="executive_admin"),
-        InlineKeyboardButton(text="💳", callback_data="executive_credit"),
+        InlineKeyboardButton(text="🏡", callback_data="avenger_back"),
+        InlineKeyboardButton(text="🛡️", callback_data="avenger_admin"),
+        InlineKeyboardButton(text="💳", callback_data="avenger_credit"),
         InlineKeyboardButton(text="🧑‍💻", callback_data="source_"),
         InlineKeyboardButton(text="🖥️", callback_data="help_back"),
     ],
@@ -111,14 +111,14 @@ buttons = [
     ],
     [
         InlineKeyboardButton(
-            text="➕ ᴇxᴇᴄᴜᴛɪᴠᴇ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅꜱ ➕", callback_data="help_back"
+            text="➕ ᴀᴠᴇɴɢᴇʀ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅꜱ ➕", callback_data="help_back"
         ),
     ],
 ]
 
 
 HELP_STRINGS = """
-━━━━━━━ *ᴇxᴇᴄᴜᴛɪᴠᴇ* ━━━━━━━\n  ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟʟᴏᴡ ᴛᴏ\nɢᴇᴛ ᴜꜱᴀɢᴇ ᴏꜰ ꜱᴘᴇᴄɪꜰɪᴄꜱ ᴄᴏᴍᴍᴀɴᴅ.\n━━━━━━━━━━━━━━━━━━━━━\n       /start : ɢᴇᴛᴛɪɴɢ ʙᴀᴄᴋ ʜᴏᴍᴇ
+━━━━━━━ *ᴀᴠᴇɴɢᴇʀ* ━━━━━━━\n  ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟʟᴏᴡ ᴛᴏ\nɢᴇᴛ ᴜꜱᴀɢᴇ ᴏꜰ ꜱᴘᴇᴄɪꜰɪᴄꜱ ᴄᴏᴍᴍᴀɴᴅ.\n━━━━━━━━━━━━━━━━━━━━━\n       /start : ɢᴇᴛᴛɪɴɢ ʙᴀᴄᴋ ʜᴏᴍᴇ
 """
 
 EXECUTIVE_IMG = "https://telegra.ph/file/775d00f8d00b56c2120ca.mp4"
@@ -378,9 +378,9 @@ def help_button(update, context):
         pass
 
 
-def executive_about_callback(update, context):
+def avenger_about_callback(update, context):
     query = update.callback_query
-    if query.data == "executive_":
+    if query.data == "avenger_":
         query.message.edit_text(
             text="๏ I'm *Emiko*, a powerful group management bot built to help you manage your group easily."
             "\n• I can restrict users."
@@ -397,18 +397,18 @@ def executive_about_callback(update, context):
                 [
                     [
                         InlineKeyboardButton(
-                            text="Admins", callback_data="executive_admin"
+                            text="Admins", callback_data="avenger_admin"
                         ),
                         InlineKeyboardButton(
-                            text="Notes", callback_data="executive_notes"
+                            text="Notes", callback_data="avenger_notes"
                         ),
                     ],
                     [
                         InlineKeyboardButton(
-                            text="Support", callback_data="executive_support"
+                            text="Support", callback_data="avenger_support"
                         ),
                         InlineKeyboardButton(
-                            text="Credits", callback_data="executive_credit"
+                            text="Credits", callback_data="avenger_credit"
                         ),
                     ],
                     [
@@ -419,13 +419,13 @@ def executive_about_callback(update, context):
                     ],
                     [
                         InlineKeyboardButton(
-                            text="Go Back", callback_data="executive_back"
+                            text="Go Back", callback_data="avenger_back"
                         ),
                     ],
                 ]
             ),
         )
-    elif query.data == "executive_back":
+    elif query.data == "avenger_back":
         first_name = update.effective_user.first_name
         uptime = get_readable_time((time.time() - StartTime))
         query.message.edit_text(
@@ -436,12 +436,12 @@ def executive_about_callback(update, context):
             timeout=60,
         )
 
-    elif query.data == "executive_admin":
+    elif query.data == "avenger_admin":
         query.message.edit_text(
-            text=f"━━━━━━━ *ᴇxᴇᴄᴜᴛɪᴠᴇ* ━━━━━━━"
+            text=f"━━━━━━━ *ᴀᴠᴇɴɢᴇʀ* ━━━━━━━"
             "\n*ᴍᴀᴋᴇ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴇꜰꜰᴇᴄᴛɪᴠᴇ ɴᴏᴡ :*"
             "\n🎉 ᴄᴏɴɢʀᴀɢᴜʟᴀᴛɪᴏɴꜱ 🎉"
-            "\n[ᴇxᴇᴄᴜᴛɪᴠᴇ ʀᴏʙᴏᴛ](t.me/ExecutiveRobot) ɴᴏᴡ ʀᴇᴀᴅʏ ᴛᴏ"
+            "\n[ᴀᴠᴇɴɢᴇʀ ʀᴏʙᴏᴛ](t.me/AvengerBot) ɴᴏᴡ ʀᴇᴀᴅʏ ᴛᴏ"
             "\nᴍᴀɴᴀɢᴇ ʏᴏᴜʀ ɢʀᴏᴜᴘ."
             "\n\n*ᴀᴅᴍɪɴ ᴛᴏᴏʟꜱ :*"
             "\nʙᴀꜱɪᴄ ᴀᴅᴍɪɴ ᴛᴏᴏʟꜱ ʜᴇʟᴘ ʏᴏᴜ ᴛᴏ"
@@ -459,12 +459,12 @@ def executive_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text="🏡", callback_data="executive_back"),
+                        InlineKeyboardButton(text="🏡", callback_data="avenger_back"),
                         InlineKeyboardButton(
-                            text="🛡️", callback_data="executive_admin"
+                            text="🛡️", callback_data="avenger_admin"
                         ),
                         InlineKeyboardButton(
-                            text="💳", callback_data="executive_credit"
+                            text="💳", callback_data="avenger_credit"
                         ),
                         InlineKeyboardButton(text="🧑‍💻", callback_data="source_"),
                         InlineKeyboardButton(text="🖥️", callback_data="help_back"),
@@ -473,7 +473,7 @@ def executive_about_callback(update, context):
             ),
         )
 
-    elif query.data == "executive_notes":
+    elif query.data == "avenger_notes":
         query.message.edit_text(
             text=f"<b>๏ Setting up notes</b>"
             f"\nYou can save message/media/audio or anything as notes"
@@ -484,7 +484,7 @@ def executive_about_callback(update, context):
                 [[InlineKeyboardButton(text="Go Back", callback_data="executive_")]]
             ),
         )
-    elif query.data == "executive_support":
+    elif query.data == "avenger_support":
         query.message.edit_text(
             text="*๏ Emiko support chats*"
             "\nJoin My Support Group/Channel for see or report a problem on Emiko.",
@@ -501,33 +501,33 @@ def executive_about_callback(update, context):
                     ],
                     [
                         InlineKeyboardButton(
-                            text="Go Back", callback_data="executive_"
+                            text="Go Back", callback_data="avenger_"
                         ),
                     ],
                 ]
             ),
         )
 
-    elif query.data == "executive_credit":
+    elif query.data == "avenger_credit":
         query.message.edit_text(
-            text=f"━━━━━━━ *ᴇxᴇᴄᴜᴛɪᴠᴇ* ━━━━━━━"
-            "\n🛡️ *ᴄʀᴇᴅɪᴛ ꜰᴏʀ ᴇxᴇᴄᴜᴛɪᴠᴇ ʀᴏʙᴏᴛ* 🛡️"
+            text=f"━━━━━━━ *ᴀᴠᴇɴɢᴇʀ* ━━━━━━━"
+            "\n🛡️ *ᴄʀᴇᴅɪᴛ ꜰᴏʀ ᴀᴠᴇɴɢᴇʀ ʀᴏʙᴏᴛ* 🛡️"
             "\n\nʜᴇʀᴇ ɪꜱ ᴛʜᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ ᴀɴᴅ"
-            "\nꜱᴘᴏɴꜱᴏʀ ᴏꜰ [ᴇxᴇᴄᴜᴛɪᴠᴇ ʀᴏʙᴏᴛ](t.me/ExecutiveRobot)"
+            "\nꜱᴘᴏɴꜱᴏʀ ᴏꜰ [ᴀᴠᴇɴɢᴇʀ ʀᴏʙᴏᴛ](t.me/AvengerBot)"
             "\n\nʜᴇ ꜱᴘᴇɴᴛ ᴀ ʟᴏᴛ ᴏꜰ ᴛɪᴍᴇ ꜰᴏʀ"
-            "\nᴍᴀᴋɪɴɢ [ᴇxᴇᴄᴜᴛɪᴠᴇ ʀᴏʙᴏᴛ](t.me/ExecutiveRobot) ᴀ"
+            "\nᴍᴀᴋɪɴɢ [ᴀᴠᴇɴɢᴇʀ ʀᴏʙᴏᴛ](t.me/AvengerBot) ᴀ"
             "\nꜱᴜᴘᴇʀ ɢʀᴏᴜᴘ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ ʙᴏᴛ",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text="🏡", callback_data="executive_back"),
+                        InlineKeyboardButton(text="🏡", callback_data="avenger_back"),
                         InlineKeyboardButton(
-                            text="🛡️", callback_data="executive_admin"
+                            text="🛡️", callback_data="avenger_admin"
                         ),
                         InlineKeyboardButton(
-                            text="💳", callback_data="executive_credit"
+                            text="💳", callback_data="avenger_credit"
                         ),
                         InlineKeyboardButton(text="🧑‍💻", callback_data="source_"),
                         InlineKeyboardButton(text="🖥️", callback_data="help_back"),
@@ -547,23 +547,23 @@ def Source_about_callback(update, context):
     query = update.callback_query
     if query.data == "source_":
         query.message.edit_text(
-            text="━━━━━━━ *ᴇxᴇᴄᴜᴛɪᴠᴇ* ━━━━━━━"
-            "\n  👨‍💻 *ᴇxᴇᴄᴜᴛɪᴠᴇ ʀᴏʙᴏᴛ ꜱᴏᴜʀᴄᴇ* 👨‍💻"
+            text="━━━━━━━ *ᴀᴠᴇɴɢᴇʀ* ━━━━━━━"
+            "\n  👨‍💻 *ᴀᴠᴇɴɢᴇʀ ʀᴏʙᴏᴛ ꜱᴏᴜʀᴄᴇ* 👨‍💻"
             "\n\nʜᴇʀᴇ ɪꜱ ᴛʜᴇ ꜱᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ᴏꜰ"
-            "\n[ᴇxᴇᴄᴜᴛɪᴠᴇ ʀᴏʙᴏᴛ](t.me/ExecutiveRobot), ᴡʜɪᴄʜ ʜᴇʟᴘꜱ"
-            "\n[ᴇxᴇᴄᴜᴛɪᴠᴇ ʀᴏʙᴏᴛ](t.me/ExecutiveRobot) ꜰᴏʀ ꜰᴜɴᴄᴛɪᴏɴɪɴɢ"
+            "\n[ᴀᴠᴇɴɢᴇʀ ʀᴏʙᴏᴛ](t.me/AvengerBot), ᴡʜɪᴄʜ ʜᴇʟᴘꜱ"
+            "\n[ᴀᴠᴇɴɢᴇʀ ʀᴏʙᴏᴛ](t.me/AvengerBot) ꜰᴏʀ ꜰᴜɴᴄᴛɪᴏɴɪɴɢ"
             "\nᴘʀᴏᴘᴇʀʟʏ ᴀɴᴅ ᴇꜰꜰᴇᴄᴛɪᴠᴇʟʏ",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text="🏡", callback_data="executive_back"),
+                        InlineKeyboardButton(text="🏡", callback_data="avenger_back"),
                         InlineKeyboardButton(
-                            text="🛡️", callback_data="executive_admin"
+                            text="🛡️", callback_data="avenger_admin"
                         ),
                         InlineKeyboardButton(
-                            text="💳", callback_data="executive_credit"
+                            text="💳", callback_data="avenger_credit"
                         ),
                         InlineKeyboardButton(text="🧑‍💻", callback_data="source_"),
                         InlineKeyboardButton(text="🖥️", callback_data="help_back"),
@@ -844,7 +844,7 @@ def main():
         try:
             dispatcher.bot.sendMessage(
                 f"@{SUPPORT_CHAT}",
-                f"""━━━━━━━━━━━━━━━━━━━━━\n  ✅ [ᴇxᴇᴄᴜᴛɪᴠᴇ ʀᴏʙᴏᴛ](t.me/ExecutiveRobot) *ꜱᴛᴀʀᴛᴇᴅ* ✅\n━━━━━━━━━━━━━━━━━━━━━\n
+                f"""━━━━━━━━━━━━━━━━━━━━━\n  ✅ [ᴀᴠᴇɴɢᴇʀ ʀᴏʙᴏᴛ](t.me/AvengerBot) *ꜱᴛᴀʀᴛᴇᴅ* ✅\n━━━━━━━━━━━━━━━━━━━━━\n
          *ᴘʏᴛʜᴏɴ ᴠᴇʀꜱɪᴏɴ:* `{memek()}`
          *ʟɪʙʀᴀʀʏ ᴠᴇʀꜱɪᴏɴ:* `{peler}`
 ━━━━━━━━━━━━━━━━━━━━━
@@ -873,7 +873,7 @@ def main():
     )
 
     about_callback_handler = CallbackQueryHandler(
-        executive_about_callback, pattern=r"executive_", run_async=True
+        avenger_about_callback, pattern=r"avenger_", run_async=True
     )
 
     source_callback_handler = CallbackQueryHandler(
