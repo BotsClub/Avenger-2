@@ -8,7 +8,7 @@ from telegram.ext import CallbackContext, Filters
 import Avenger.modules.no_sql.users_db as user_db
 from Avenger import DEV_USERS, LOGGER, OWNER_ID, dispatcher
 from Avenger.modules.helper_funcs.chatstatus import dev_plus, sudo_plus
-from Avenger.modules.no_sql.users_db import get_all_users
+from Avenger.modules.no_sql.users_db import get_all_users, get_all_chats
 from Avenger.modules.helper_funcs.decorators import avengercmd, avengermsg
 
 
