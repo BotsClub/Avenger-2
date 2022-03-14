@@ -312,7 +312,7 @@ def info(update: Update, context: CallbackContext):
     disaster_level_present = False
 
     if user.id == OWNER_ID:
-        text += "\n\n[ᴍᴜᴋᴇꜱʜ ꜱᴏʟᴀɴᴋɪ](t.me/mkspali) ɪꜱ ᴍʏ ᴏᴡɴᴇʀ"
+        text += "\n\nᴍᴜᴋᴇꜱʜ ꜱᴏʟᴀɴᴋɪ ɪꜱ ᴍʏ ᴏᴡɴᴇʀ"
         disaster_level_present = True
     elif user.id in DEV_USERS:
         text += "\n\nThis user is member of 'Prince'."
