@@ -587,7 +587,7 @@ def addnew_filter(update, chat_id, keyword, text, file_type, file_id, buttons):
 
 
 def __stats__():
-    return " {} filters, across {} chats.".format(sql.num_filters(), sql.num_chats())
+    return "❂ {} <b><b>ꜰɪʟᴛᴇʀꜱ, ᴀᴄʀᴏꜱꜱ</b></b> {} <b><b>ᴄʜᴀᴛꜱ</b></b>".format(sql.num_filters(), sql.num_chats())
 
 
 def __import_data__(chat_id, data):
