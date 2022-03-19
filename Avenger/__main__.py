@@ -565,7 +565,7 @@ def Source_about_callback(update, context):
                         InlineKeyboardButton(
                             text="💳", callback_data="avenger_credit"
                         ),
-                        InlineKeyboardButton(text="🧑‍💻", callback_data="source_"),
+                        InlineKeyboardButton(text="🧑‍💻", url="https://t.me/mkspali"),
                         InlineKeyboardButton(text="🖥️", callback_data="help_back"),
                     ],
                     [
@@ -577,15 +577,7 @@ def Source_about_callback(update, context):
                 ]
             ),
         )
-    elif query.data == "source_back":
-        first_name = update.effective_user.first_name
-        query.message.edit_text(
-            PM_START_TEXT.format(sql.num_users(), sql.num_chats()),
-            reply_markup=InlineKeyboardMarkup(buttons),
-            parse_mode=ParseMode.MARKDOWN,
-            disable_web_page_preview=True,
-            timeout=60,
-        )
+
 
 
 def get_help(update: Update, context: CallbackContext):
