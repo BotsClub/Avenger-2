@@ -1,4 +1,4 @@
-from Avenger import db
+from Avenger.mongo import db
 from typing import Dict, List, Union
 
 
