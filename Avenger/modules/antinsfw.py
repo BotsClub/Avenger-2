@@ -2,9 +2,9 @@ from os import remove
 from pyrogram import filters
 
 from Avenger import DRAGONS, arq, pbot
-from Avenger.utils.errors import capture_err
+from Avenger.ex_plugins.errors import capture_err
 from Avenger.utils.permissions import adminsOnly
-from Avenger.modules.mongo.nsfw_mongo import is_nsfw_on, nsfw_off, nsfw_on
+from Avenger.ex_plugins.dbfunctions import is_nsfw_on, nsfw_off, nsfw_on
 
 
 async def get_file_id_from_message(message):
