@@ -1,62 +1,64 @@
+import asyncio
 import os
 import re
-import json
-import aiohttp
-import requests
 
-from pyrogram import Client, filters
+import aiofiles
+from pykeyboard import InlineKeyboard
+from pyrogram import filters
+from pyrogram.types import InlineKeyboardButton
 
+from Avenger import pbot, aiohttpsession
+from Avenger.utils.errors import capture_err
+from Avenger.utils.pastebin import paste
 
-#Headers
-headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36",
-    "content-type": "application/json",
-}
-
-#Pastebins
-async def p_paste(message, extension=None):
-    siteurl = "https://pasty.lus.pm/api/v1/pastes"
-    data = {"content": message}
-    try:
-        response = requests.post(url=siteurl, data=json.dumps(data), headers=headers)
-    except Exception as e:
-        return {"error": str(e)}
-    if response.ok:
-        response = response.json()
-        purl = (
-            f"https://pasty.lus.pm/{response['id']}.{extension}"
-            if extension
-            else f"https://pasty.lus.pm/{response['id']}.txt"
-        )
-        return {
-            "url": purl,
-            "raw": f"https://pasty.lus.pm/{response['id']}/raw",
-            "bin": "Pasty",
-        }
-    return {"error": "𝖴𝗇𝖺𝖻𝗅𝖾 𝗍𝗈 𝗋𝖾𝖺𝖼𝗁 𝗉𝖺𝗌𝗍𝗒.𝗅𝗎𝗌.𝗉𝗆"}
+pattern = re.compile(r"^text/|json$|yaml$|xml$|toml$|x-sh$|x-shellscript$")
 
 
-@Client.on_message(filters.command(["paste"]))
-async def pasty(client, message):
-    pablo = await message.reply_text("𝖯𝗅𝖾𝖺𝗌𝖾 𝖶𝖺𝗂𝗍...")
-    tex_t = message.text
-    message_s = tex_t
-    if not tex_t:
-        if not message.reply_to_message:
-            await pablo.edit("𝖮𝗇𝗅𝗒 𝗍𝖾𝗑𝗍 𝖺𝗇𝖽 𝖽𝗈𝖼𝗎𝗆𝖾𝗇𝗍𝗌 𝖺𝗋𝖾 𝗌𝗎𝗉𝗉𝗈𝗋𝗍𝖾𝖽.")
-            return
-        if not message.reply_to_message.text:
-            file = await message.reply_to_message.download()
-            m_list = open(file, "r").read()
-            message_s = m_list
-            os.remove(file)
-        elif message.reply_to_message.text:
-            message_s = message.reply_to_message.text
-    
-    ext = "py"
-    x = await p_paste(message_s, ext)
-    p_link = x["url"]
-    p_raw = x["raw"]
-    
-    pasted = f"**𝖲𝗎𝖼𝖾𝗌𝗌𝖿𝗎𝗅𝗅𝗒 𝗉𝖺𝗌𝗍𝖾𝖽 𝗍𝗈 𝗉𝖺𝗌𝗍𝖾 𝖻𝗂𝗇**\n\n**𝖫𝗂𝗇𝗄:** • [𝖢𝗅𝗂𝖼𝗄 𝖧𝖾𝗋𝖾]({p_link})\n\n**𝖱𝖺𝗐 𝖫𝗂𝗇𝗄:** • [𝖢𝗅𝗂𝖼𝗄 𝖧𝖾𝗋𝖾]({p_raw})"
-    await pablo.edit(pasted, disable_web_page_preview=True)
+async def isPreviewUp(preview: str) -> bool:
+    for _ in range(7):
+        try:
+            async with aiohttpsession.head(preview, timeout=2) as resp:
+                status = resp.status
+                size = resp.content_length
+        except asyncio.exceptions.TimeoutError:
+            return False
+        if status == 404 or (status == 200 and size == 0):
+            await asyncio.sleep(0.4)
+        else:
+            return status == 200
+    return False
+
+
+@pbot.on_message(filters.command("paste") & ~filters.edited)
+@capture_err
+async def paste_func(_, message):
+    if not message.reply_to_message:
+        return await message.reply_text("Reply To A Message With /paste")
+    m = await message.reply_text("Pasting...")
+    if message.reply_to_message.text:
+        content = str(message.reply_to_message.text)
+    elif message.reply_to_message.document:
+        document = message.reply_to_message.document
+        if document.file_size > 1048576:
+            return await m.edit("You can only paste files smaller than 1MB.")
+        if not pattern.search(document.mime_type):
+            return await m.edit("Only text files can be pasted.")
+        doc = await message.reply_to_message.download()
+        async with aiofiles.open(doc, mode="r") as f:
+            content = await f.read()
+        os.remove(doc)
+    link = await paste(content)
+    preview = link + "/preview.png"
+    button = InlineKeyboard(row_width=1)
+    button.add(InlineKeyboardButton(text="Paste Link", url=link))
+
+    if await isPreviewUp(preview):
+        try:
+            await message.reply_photo(photo=preview, quote=False, reply_markup=button)
+            return await m.delete()
+        except Exception:
+            pass
+    return await m.edit(link)
+
+
+__mod_name__ = "Paste"
