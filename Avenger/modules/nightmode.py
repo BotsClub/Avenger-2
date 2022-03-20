@@ -1,5 +1,5 @@
 import os
-from Avenger.modules.sql.night_mode_sql import (
+from Avenger.modules.nsql.night_mode_sql import (
     add_nightmode,
     rmnightmode,
     get_all_chat_id,
