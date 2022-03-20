@@ -12,7 +12,7 @@ from pyrogram.types import ChatPermissions, InlineKeyboardButton, InlineKeyboard
 
 from Avenger import DRAGONS as SUDO_USERS
 from Avenger import pbot
-from Avenger.modules.sql import forceSubscribe_sql as sql
+from Avenger.modules.fsql import forceSubscribe_sql as sql
 
 PHOTO = "https://telegra.ph/file/256e899907a0268251e11.jpg"
 
