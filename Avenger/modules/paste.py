@@ -1,24 +1,43 @@
-from requests import post, get
-from Avenger import pbot as bot
-from pyrogram import filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+import requests
+from Avenger import dispatcher
+from Avenger.modules.disable import DisableAbleCommandHandler
+from telegram import ParseMode, Update
+from telegram.ext import CallbackContext, run_async
 
 
-def paste(text):
-    url = "https://spaceb.in/api/v1/documents/"
-    res = post(url, data={"content": text, "extension": "txt"})
-    return f"https://spaceb.in/{res.json()['payload']['id']}"
+@run_async
+def paste(update: Update, context: CallbackContext):
+    args = context.args
+    message = update.effective_message
 
+    if message.reply_to_message:
+        data = message.reply_to_message.text
 
-@bot.on_message(filters.command('paste'))
-def pastex(_, message):
-    text = message.reply_to_message
-    if text:
-        x = paste(text.text)
-        message.reply(x,
-                      reply_markup=InlineKeyboardMarkup(
-                          [[InlineKeyboardButton("Open", url=x)]]),
-                      disable_web_page_preview=True)
+    elif len(args) >= 1:
+        data = message.text.split(None, 1)[1]
 
     else:
-        message.reply_text("Reply to a message!")
+        message.reply_text("What am I supposed to do with this?")
+        return
+
+    key = (
+        requests.post("https://nekobin.com/api/documents", json={"content": data})
+        .json()
+        .get("result")
+        .get("key")
+    )
+
+    url = f"https://nekobin.com/{key}"
+
+    reply_text = f"Nekofied to *Nekobin* : {url}"
+
+    message.reply_text(
+        reply_text, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True
+    )
+
+
+PASTE_HANDLER = DisableAbleCommandHandler("paste", paste)
+dispatcher.add_handler(PASTE_HANDLER)
+
+__command_list__ = ["paste"]
+__handlers__ = [PASTE_HANDLER]
