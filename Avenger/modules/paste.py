@@ -9,7 +9,6 @@ from pyrogram.types import InlineKeyboardButton
 
 from Avenger import aiohttpsession as session
 from Avenger import pbot as app
-from Avenger.utils.errors import capture_err
 from Avenger.utils.pastebin import paste
 
 __mod_name__ = "Paste​"
@@ -33,7 +32,6 @@ async def isPreviewUp(preview: str) -> bool:
 
 
 @app.on_message(filters.command("paste") & ~filters.edited)
-@capture_err
 async def paste_func(_, message):
     if not message.reply_to_message:
         return await message.reply_text("Reply To A Message With /paste")
