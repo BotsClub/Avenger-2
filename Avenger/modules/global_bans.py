@@ -26,6 +26,7 @@ from Avenger import (
 from Avenger.modules.helper_funcs.chatstatus import (
     is_user_admin,
     support_plus,
+    dev_plus,
     user_admin,
 )
 from Avenger.modules.helper_funcs.decorators import avengermsg
@@ -266,7 +267,7 @@ def gban(update: Update, context: CallbackContext):
         pass  # bot probably blocked by user
 
 
-@support_plus
+@dev_plus
 def ungban(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     message = update.effective_message
