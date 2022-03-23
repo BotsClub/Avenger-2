@@ -2,10 +2,10 @@ from sys import exit as exiter
 from pymongo import MongoClient
 from pymongo.errors import PyMongoError
 from motor.motor_asyncio import AsyncIOMotorClient as AvengerMongoClient
-from Avenger import DB_URI
+from Avenger import MONGO_DB_URI
 
 MONGO_PORT = "27017"
-Avengermongo = AvengerMongoClient(DB_URI)
+Avengermongo = AvengerMongoClient(MONGO_DB_URI)
 adb = Avengermongo.avenger
 #filters
 filtersdb = adb.filters
@@ -13,10 +13,10 @@ filtersdb = adb.filters
 notesdb = adb.notes
 chatbotdb = adb.chatbot
 
-from Avenger import  DB_URI
+from Avenger import  MONGO_DB_URI
 
 try:
-    client = MongoClient(DB_URI)
+    client = MongoClient(MONGO_DB_URI)
 except PyMongoError as f:
     exiter(1)
 main_db = client["maindb"]
