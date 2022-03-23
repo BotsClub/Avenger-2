@@ -160,7 +160,7 @@ def gban(update: Update, context: CallbackContext):
 
         return
 
-    message.reply_text("On it!")
+    message.reply_text("{mention_html(user_chat.id, user_chat.first_name)} 🅶🅱🅰🅽🅽🅴🅳")
 
     start_time = time.time()
     datetime_fmt = "%Y-%m-%dT%H:%M"
@@ -260,7 +260,7 @@ def gban(update: Update, context: CallbackContext):
             "#EVENT"
             "You have been marked as Malicious and as such have been banned from any future groups we manage."
             f"\n<b>Reason:</b> <code>{html.escape(user['reason'])}</code>"
-            f"</b>Appeal Chat:</b> @{SUPPORT_CHAT}",
+            f"</b>Appeal Chat:</b> @BotsClubDiscussion",
             parse_mode=ParseMode.HTML,
         )
     except:
