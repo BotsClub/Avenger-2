@@ -160,7 +160,7 @@ def gban(update: Update, context: CallbackContext):
 
         return
 
-    message.reply_text("{mention_html(user_chat.id, user_chat.first_name)} 🅶🅱🅰🅽🅽🅴🅳")
+    message.reply_text("🆄🆂🅴🆁  🅶🅱🅰🅽🅽🅴🅳")
 
     start_time = time.time()
     datetime_fmt = "%Y-%m-%dT%H:%M"
