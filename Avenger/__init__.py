@@ -103,7 +103,6 @@ if ENV:
     STRING_SESSION = os.environ.get("STRING_SESSION", None)
     DB_URL = os.environ.get("DATABASE_URL")
     DB_URL = DB_URL.replace("postgres://", "postgresql://", 1)
-    FDB_URL = os.environ.get("HEROKU_POSTGRESQL_YELLOW_URL")
     NDB_URL = os.environ.get("NMODEDATABASE_URL")
     REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
     MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
