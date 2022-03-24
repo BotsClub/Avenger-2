@@ -234,7 +234,7 @@ DEV_USERS.add(412094015)
 
 
 myclient = pymongo.MongoClient(MONGO_URI)
-dbn = myclient["mkspali"]
+dbn = myclient["AvengerOP"]
 
 
 REDIS = StrictRedis.from_url(REDIS_URL, decode_responses=True)
