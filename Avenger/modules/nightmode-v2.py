@@ -12,7 +12,7 @@ from pyrogram.errors import ChatNotModified
 from pyrogram.types import ChatPermissions
 
 myapp = pymongo.MongoClient(MONGO_URI)
-dbx = myapp["mkspali"]
+dbx = myapp["AvengerOP"]
 nightmod = dbx['nightmodes']
 
 nm = dbn['NIGHTMODEx']
