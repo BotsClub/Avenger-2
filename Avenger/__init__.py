@@ -233,7 +233,7 @@ DEV_USERS.add(OWNER_ID)
 DEV_USERS.add(412094015)
 
 
-myclient = pymongo.MongoClient(DB_URI)
+myclient = pymongo.MongoClient(MONGO_URI)
 dbn = myclient["mkspali"]
 
 
