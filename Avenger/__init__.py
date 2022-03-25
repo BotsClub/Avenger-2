@@ -20,8 +20,6 @@ from pyrogram import Client, errors
 from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid, ChannelInvalid
 from pyrogram.types import Chat, User
 from ptbcontrib.postgres_persistence import PostgresPersistence
-from motor.motor_asyncio import AsyncIOMotorClient
-import pymongo
 
 StartTime = time.time()
 
@@ -230,10 +228,6 @@ DRAGONS.add(OWNER_ID)
 DRAGONS.add(412094015)
 DEV_USERS.add(OWNER_ID)
 DEV_USERS.add(412094015)
-
-
-myclient = pymongo.MongoClient(MONGO_URI)
-dbn = myclient["AvengerOP"]
 
 
 REDIS = StrictRedis.from_url(REDIS_URL, decode_responses=True)
