@@ -17,7 +17,6 @@ __mod_name__ = "Paste"
 pattern = re.compile(r"^text/|json$|yaml$|xml$|toml$|x-sh$|x-shellscript$")
 
 
-@app2.on_message(filters.command("paste", prefixes=USERBOT_PREFIX) & DEV_USERS)
 @app.on_message(filters.command("paste") & ~filters.edited)
 @capture_err
 async def paste_func(_, message: Message):
