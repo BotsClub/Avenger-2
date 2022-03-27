@@ -1,3 +1,4 @@
+from telethon.errors.rpcerrorlist import YouBlockedUserError
 from Avenger.events import register
 from Avenger import ubot2
 
@@ -24,6 +25,9 @@ async def lastname(steal):
                 msg = await conv.send_message(id)
                 r = await conv.get_response()
                 response = await conv.get_response()
+            except YouBlockedUserError:
+                await steal.reply("```Error, report to @BotsClubDiscussion```")
+                return
             if r.text.startswith("Name"):
                 respond = await conv.get_response()
                 await puki.edit(f"`{r.message}`")
