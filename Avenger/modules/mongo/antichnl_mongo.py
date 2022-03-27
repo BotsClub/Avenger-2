@@ -1,5 +1,7 @@
-from Avenger.modules.mongo import anitcdb
+from Avenger import db
+from typing import Dict, List, Union
 
+anitcdb = db.antichnl
 
 async def is_antichnl(group_id):
     data = await anitcdb.find_one({"group_id": group_id})
