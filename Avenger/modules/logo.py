@@ -228,10 +228,10 @@ async def repolypj(_, message):
     os.remove(photo)
 
 
-__mod_name__ = "ʟᴏɢᴏ"
+__mod_name__ = "Lᴏɢᴏ"
 
 __help__ = """
-*This is help menu for logomaker*
+*User Commands :*
 /logo <text/name> - Create a logo with random view.
 /picme : Try as it is
 """
