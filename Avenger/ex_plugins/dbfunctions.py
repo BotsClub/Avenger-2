@@ -3,14 +3,11 @@ import pickle
 from typing import Dict, List, Union
 
 from Avenger.mongo import db
-from Avenger.mongo import dbx
-from Avenger.mongo import dby
 
 nsfwdb = db.nsfw
 notesdb = db.notes
 filtersdb = db.filters
 warnsdb = db.warns
-karmadb = dby.karma
 chatsdb = db.chats
 usersdb = db.users
 gbansdb = db.gban
@@ -30,7 +27,6 @@ flood_toggle_db = db.flood_toggle
 rssdb = db.rss
 lockurl = db.lockurl
 antispam = db.antispam
-nexaub_antif = dbx.nexa_mongodb
 anitcdb = db.antichannel
 chatbotdb = db.chatbotdb
 spamdb = db.spam
@@ -103,35 +99,6 @@ def antichnl_off(group_id):
     else:
         anitcdb.delete_one({"group_id": group_id})
         return True
-
-
-# To on / off / get anti functions
-async def set_anti_func(chat_id, status, mode):
-    anti_f = await nexaub_antif.find_one({"_id": chat_id})
-    if anti_f:
-        await nexaub_antif.update_one(
-            {"_id": chat_id}, {"$set": {"status": status, "mode": mode}}
-        )
-    else:
-        await nexaub_antif.insert_one({"_id": chat_id, "status": status, "mode": mode})
-
-
-async def get_anti_func(chat_id):
-    anti_f = await nexaub_antif.find_one({"_id": chat_id})
-    if not anti_f:
-        return None
-    else:
-        snm = [anti_f["status"], anti_f["mode"]]
-        return snm
-
-
-async def del_anti_func(chat_id):
-    anti_f = await nexaub_antif.find_one({"_id": chat_id})
-    if anti_f:
-        await nexaub_antif.delete_one({"_id": chat_id})
-        return True
-    else:
-        return False
 
 
 async def is_spam_enabled(chat_id: int) -> bool:
@@ -401,77 +368,6 @@ async def remove_warns(chat_id: int, name: str) -> bool:
         )
         return True
     return False
-
-
-async def get_karmas_count() -> dict:
-    chats = karmadb.find({"chat_id": {"$lt": 0}})
-    if not chats:
-        return {}
-    chats_count = 0
-    karmas_count = 0
-    for chat in await chats.to_list(length=1000000):
-        for i in chat["karma"]:
-            karma_ = chat["karma"][i]["karma"]
-            if karma_ > 0:
-                karmas_count += karma_
-        chats_count += 1
-    return {"chats_count": chats_count, "karmas_count": karmas_count}
-
-
-async def user_global_karma(user_id) -> int:
-    chats = karmadb.find({"chat_id": {"$lt": 0}})
-    if not chats:
-        return 0
-    total_karma = 0
-    for chat in await chats.to_list(length=1000000):
-        karma = await get_karma(chat["chat_id"], await int_to_alpha(user_id))
-        if karma and (int(karma["karma"]) > 0):
-            total_karma += int(karma["karma"])
-    return total_karma
-
-
-async def get_karmas(chat_id: int) -> Dict[str, int]:
-    karma = await karmadb.find_one({"chat_id": chat_id})
-    if not karma:
-        return {}
-    return karma["karma"]
-
-
-async def get_karma(chat_id: int, name: str) -> Union[bool, dict]:
-    name = name.lower().strip()
-    karmas = await get_karmas(chat_id)
-    if name in karmas:
-        return karmas[name]
-
-
-async def update_karma(chat_id: int, name: str, karma: dict):
-    name = name.lower().strip()
-    karmas = await get_karmas(chat_id)
-    karmas[name] = karma
-    await karmadb.update_one(
-        {"chat_id": chat_id}, {"$set": {"karma": karmas}}, upsert=True
-    )
-
-
-async def is_karma_on(chat_id: int) -> bool:
-    chat = await karmadb.find_one({"chat_id_toggle": chat_id})
-    if not chat:
-        return True
-    return False
-
-
-async def karma_on(chat_id: int):
-    is_karma = await is_karma_on(chat_id)
-    if is_karma:
-        return
-    return await karmadb.delete_one({"chat_id_toggle": chat_id})
-
-
-async def karma_off(chat_id: int):
-    is_karma = await is_karma_on(chat_id)
-    if not is_karma:
-        return
-    return await karmadb.insert_one({"chat_id_toggle": chat_id})
 
 
 async def is_served_chat(chat_id: int) -> bool:
