@@ -378,7 +378,7 @@ def ungban(update: Update, context: CallbackContext):
         message.reply_text(f"Person has been un-gbanned. Took {ungban_time} sec")
 
 
-@support_plus
+@dev_plus
 def gbanlist(update: Update, context: CallbackContext):
     banned_users = gban_db.get_gban_list()
 
