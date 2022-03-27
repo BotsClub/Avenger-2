@@ -113,7 +113,7 @@ async def command_karma(_, message):
         if not karma:
             await m.edit("No karma in DB for this chat.")
             return
-        msg = f"🏆 Top list of Karma owners in the {message.chat.title}»: \n"
+        msg = f"🏆 Karma list of {message.chat.title}\n"
         limit = 0
         karma_dicc = {}
         for i in karma:
@@ -142,7 +142,7 @@ async def command_karma(_, message):
             if not first_name:
                 continue
             username = user.username
-            msg += f"⇝ \n[{first_name}](https://t.me/{username}) — {karma_count}"
+            msg += f"[{first_name}](https://t.me/{username}) : {karma_count}"
             limit += 1
         await m.edit(msg, disable_web_page_preview=True)
     else:
@@ -156,10 +156,10 @@ async def command_karma(_, message):
             await message.reply_text(f"**Total Points**: __{karma}__")
 
 
-@app.on_message(filters.command("karmas") & ~filters.private)
+@app.on_message(filters.command("karma") & ~filters.private)
 @adminsOnly("can_change_info")
 async def captcha_state(_, message):
-    usage = "**Usage:**\n/karmas [on|off]"
+    usage = "**Usage:**\n/karma [on|off]"
     if len(message.command) != 2:
         return await message.reply_text(usage)
     chat_id = message.chat.id
@@ -167,10 +167,10 @@ async def captcha_state(_, message):
     state = state.lower()
     if state == "on":
         await karma_on(chat_id)
-        await message.reply_text("Enabled karma System!")
+        await message.reply_text("✅ **Karma System** Enabled!")
     elif state == "off":
         await karma_off(chat_id)
-        await message.reply_text("Disabled karma System!")
+        await message.reply_text("❌ **Karma System** Disabled!")
     else:
         await message.reply_text(usage)
 
