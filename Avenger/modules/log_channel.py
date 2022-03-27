@@ -174,9 +174,6 @@ if is_module_loaded(FILENAME):
         else:
             message.reply_text("No log channel has been set yet!")
 
-    def __stats__():
-        return f" {sql.num_logchannels()} log channels set."
-
     def __migrate__(old_chat_id, new_chat_id):
         sql.migrate_chat(old_chat_id, new_chat_id)
 
