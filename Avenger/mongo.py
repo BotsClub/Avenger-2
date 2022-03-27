@@ -19,11 +19,6 @@ motor = motor_asyncio.AsyncIOMotorClient(MONGO_DB_URI, MONGO_PORT)
 db = motor[MONGO_DB]
 db = client["avengerZ"]
 
-mongo_client = AsyncIOMotorClient(MONGO_DB_URI)
-dbx = mongo_client.xxx
-
-mongo_client = AsyncIOMotorClient(MONGO_DB_URI)
-dby = mongo_client.yyy
 
 try:
     asyncio.get_event_loop().run_until_complete(motor.server_info())
