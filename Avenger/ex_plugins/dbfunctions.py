@@ -4,7 +4,6 @@ from typing import Dict, List, Union
 
 from Avenger.mongo import db
 
-nsfwdb = db.nsfw
 notesdb = db.notes
 filtersdb = db.filters
 warnsdb = db.warns
@@ -15,7 +14,6 @@ coupledb = db.couple
 captchadb = db.captcha
 solved_captcha_db = db.solved_captcha
 captcha_cachedb = db.captcha_cache
-antiservicedb = db.antiservice
 pmpermitdb = db.pmpermit
 welcomedb = db.welcome_text
 blacklist_filtersdb = db.blacklistFilters
@@ -27,7 +25,6 @@ flood_toggle_db = db.flood_toggle
 rssdb = db.rss
 lockurl = db.lockurl
 antispam = db.antispam
-anitcdb = db.antichannel
 chatbotdb = db.chatbotdb
 spamdb = db.spam
 
@@ -76,31 +73,6 @@ async def chatbot_off(chat_id: int):
         return await chatbotdb.delete_one({"chat_id": chat_id})
 
 
-async def is_antichnl(group_id):
-    data = anitcdb.find_one({"group_id": group_id})
-    if not data:
-        return False, None
-    else:
-        return True, data["mode"]
-
-
-async def antichnl_on(group_id, mode):
-    data = {"group_id": group_id, "mode": (mode)}
-    try:
-        anitcdb.update_one({"group_id": group_id}, {"$set": data}, upsert=True)
-    except:
-        return
-
-
-def antichnl_off(group_id):
-    stark = anitcdb.find_one({"group_id": group_id})
-    if not stark:
-        return False
-    else:
-        anitcdb.delete_one({"group_id": group_id})
-        return True
-
-
 async def is_spam_enabled(chat_id: int) -> bool:
     chat = await antispam.find_one({"chat_id": chat_id})
     return not chat
@@ -140,30 +112,6 @@ async def url_off(chat_id):
         return True
     else:
         return False
-
-
-"""NSFW System"""
-
-
-def is_nsfw_on(group_id):
-    data = nsfwdb.find_one({"group_id": group_id})
-    if not data:
-        return False, None
-
-
-def nsfw_on(group_id):
-    data = {"group_id": group_id}
-    try:
-        nsfwdb.update_one({"group_id": group_id}, {"$set": data}, upsert=True)
-    except:
-        return
-
-
-def nsfw_off(group_id):
-    is_spam = is_nsfw_on(group_id)
-    if not is_spam:
-        return
-    return nsfwdb.delete_one({"group_id": group_id})
 
 
 def obj_to_str(obj):
@@ -510,27 +458,6 @@ async def save_captcha_solved(chat_id: int, user_id: int):
         {"$set": {"user_id": user_id}},
         upsert=True,
     )
-
-
-async def is_antiservice_on(chat_id: int) -> bool:
-    chat = await antiservicedb.find_one({"chat_id": chat_id})
-    if not chat:
-        return True
-    return False
-
-
-async def antiservice_on(chat_id: int):
-    is_antiservice = await is_antiservice_on(chat_id)
-    if is_antiservice:
-        return
-    return await antiservicedb.delete_one({"chat_id": chat_id})
-
-
-async def antiservice_off(chat_id: int):
-    is_antiservice = await is_antiservice_on(chat_id)
-    if not is_antiservice:
-        return
-    return await antiservicedb.insert_one({"chat_id": chat_id})
 
 
 async def is_pmpermit_approved(user_id: int) -> bool:
