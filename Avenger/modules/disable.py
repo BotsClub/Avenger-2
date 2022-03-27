@@ -302,9 +302,6 @@ if is_module_loaded(FILENAME):
             parse_mode=ParseMode.MARKDOWN,
         )
 
-    def __stats__():
-        return f"❂ {sql.num_disabled()} <b><b>ᴅɪꜱᴀʙʟᴇᴅ ɪᴛᴇᴍꜱ, ᴀᴄʀᴏꜱꜱ</b></b> {sql.num_chats()} <b><b>ᴄʜᴀᴛꜱ.</b></b>"
-
     def __migrate__(old_chat_id, new_chat_id):
         sql.migrate_chat(old_chat_id, new_chat_id)
 
