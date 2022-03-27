@@ -6,7 +6,7 @@ from Avenger import pbot as NEXAUB
 from Avenger.utils.permissions import adminsOnly
 from Avenger import pbot as app
 from Avenger.utils.permissions import edit_or_reply
-from Avenger.ex_plugins.dbfunctions import set_anti_func, get_anti_func, del_anti_func
+from Avenger.modules.mongo.antilang_mongo import set_anti_func, get_anti_func, del_anti_func
 from re import compile
 from tokenize import group
 from Avenger.utils.filter_groups import antifunc_group
