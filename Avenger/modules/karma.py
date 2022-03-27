@@ -156,10 +156,10 @@ async def command_karma(_, message):
             await message.reply_text(f"**Total Points**: __{karma}__")
 
 
-@app.on_message(filters.command("karma") & ~filters.private)
+@app.on_message(filters.command("karmas") & ~filters.private)
 @adminsOnly("can_change_info")
 async def captcha_state(_, message):
-    usage = "**Usage:**\n/karma [on|off]"
+    usage = "**Usage:**\n/karmas [on|off]"
     if len(message.command) != 2:
         return await message.reply_text(usage)
     chat_id = message.chat.id
