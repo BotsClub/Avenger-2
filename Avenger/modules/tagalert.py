@@ -10,17 +10,12 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatPermi
 
 from Avenger import pbot
 from Avenger import BOT_ID, MONGO_DB_URI
+from Avenger import db
 
-
-client = MongoClient(MONGO_DB_URI)
-dbd = client["AvengerTag"]
-approved_users = dbd.approve
-db = dbd
-
-tagdb = db.tagdb1
+tagdb = db.tagdb
 alarms = db.alarm
 shedule = db.shedule
-nightmod = db.nightmode4
+nightmod = db.nightmode
 
 
 def get_info(id):
