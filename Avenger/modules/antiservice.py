@@ -1,7 +1,7 @@
 from pyrogram import filters
 
-from Avenger import pbot as app
-from Avenger.ex_plugins.dbfunctions import (
+from Avenger import pbot
+from Avenger.modules.mongo.antiservice_mongo import (
     antiservice_off,
     antiservice_on,
     is_antiservice_on,
@@ -9,7 +9,7 @@ from Avenger.ex_plugins.dbfunctions import (
 from Avenger.utils.permissions import adminsOnly
 
 
-@app.on_message(filters.command("antiservice") & ~filters.private)
+@pbot.on_message(filters.command("antiservice") & ~filters.private)
 @adminsOnly("can_change_info")
 async def anti_service(_, message):
     if len(message.command) != 2:
@@ -25,7 +25,7 @@ async def anti_service(_, message):
         await message.reply_text("⚠️ **Usages :** /antiservice <on / off>")
 
 
-@app.on_message(filters.service, group=11)
+@pbot.on_message(filters.service, group=11)
 async def delete_service(_, message):
     chat_id = message.chat.id
     try:
