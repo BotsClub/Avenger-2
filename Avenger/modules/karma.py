@@ -142,7 +142,7 @@ async def command_karma(_, message):
             if not first_name:
                 continue
             username = user.username
-            msg += f"≛ [{first_name}](https://t.me/{username}) : {karma_count}"
+            msg += f"\n≛ [{first_name}](https://t.me/{username}) : {karma_count}"
             limit += 1
         await m.edit(msg, disable_web_page_preview=True)
     else:
