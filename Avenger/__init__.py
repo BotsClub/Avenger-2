@@ -20,6 +20,7 @@ from pyrogram import Client, errors
 from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid, ChannelInvalid
 from pyrogram.types import Chat, User
 from ptbcontrib.postgres_persistence import PostgresPersistence
+from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 
 StartTime = time.time()
 
@@ -215,7 +216,7 @@ else:
     LASTFM_API_KEY = Config.LASTFM_API_KEY
     CF_API_KEY = Config.CF_API_KEY
     MONGO_DB = Config.MONGO_DB
-    MONGO_URI = Config.MONG_URI
+    MONGO_URI = Config.MONGO_URI
     MONGO_PORT = Config.MONGO_PORT
 
     try:
@@ -263,6 +264,8 @@ print("[AVENGER]: INITIALIZING AIOHTTP SESSION")
 aiohttpsession = ClientSession()
 print("[AVENGER]: INITIALIZING ARQ CLIENT")
 arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
+mongo_client = MongoClient(MONGO_URI)
+db = mongo_client.avenger
 
 ubot2 = TelegramClient(StringSession(STRING_SESSION), API_ID, API_HASH)
 try:
