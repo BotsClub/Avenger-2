@@ -497,13 +497,6 @@ def __chat_settings__(chat_id, user_id):
     return "There are `{} `blacklisted stickers.".format(blacklisted)
 
 
-def __stats__():
-    return " {} blacklist stickers, across {} chats.".format(
-        sql.num_stickers_filters(),
-        sql.num_stickers_filter_chats(),
-    )
-
-
 __help__ = """
 *Blacklist Sticker*
 /blsticker*:* See current blacklisted sticker
