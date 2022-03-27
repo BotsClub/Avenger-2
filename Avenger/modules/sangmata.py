@@ -1,6 +1,7 @@
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from Avenger.events import register
 from Avenger import ubot2
+from asyncio.exceptions import TimeoutError
 
 @register(pattern="^/sg ?(.*)")
 async def lastname(steal):
@@ -49,3 +50,5 @@ async def lastname(steal):
             await ubot2.delete_messages(
                 conv.chat_id, [msg.id, r.id, response.id, respond.id]
             )
+    except TimeoutError:
+        return await puki.edit("`I'm Sick Sorry...`")
