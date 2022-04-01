@@ -1,7 +1,7 @@
 import io
 import textwrap
 from PIL import Image, ImageDraw, ImageFont
-from auditor.events import register
+from Avenger.events import register
 import random
 from Avenger import LOGGER, pbot as client
 from telethon import types
