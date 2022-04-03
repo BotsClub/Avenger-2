@@ -1,5 +1,5 @@
 from Avenger import pbot as Avenger
-from Avenger.utils.msg_types import Types
+from Avenger.modules.helper_funcs.utils.msg_types import Types
 
 
 async def send_cmd(client: Avenger, msgtype: int):
