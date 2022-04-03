@@ -8,7 +8,7 @@ from pyrogram.filters import create
 from pyrogram.types import CallbackQuery, Message
 
 from Avenger import DEV_USERS, OWNER_ID, DRAGONS
-from Avenger.modules.no_sql.disable_db import DISABLED_CMDS
+from Avenger.modules.no_sql.disable_db import DISABLED_COMMANDS as DISABLED_CMDS
 from Avenger.tr_engine import tlang
 from Avenger.modules.helper_funcs.utils.caching import ADMIN_CACHE, admin_cache_reload
 from Avenger.config import Config
