@@ -324,7 +324,7 @@ def ungban(update: Update, context: CallbackContext):
     else:
         send_to_list(bot, DRAGONS + DEMONS, log_message, html=True)
 
-    chats = get_all_chats(user_id)
+    chats = get_user_com_chats(user_id)
     ungbanned_chats = 0
 
     for chat in chats:
