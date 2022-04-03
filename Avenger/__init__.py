@@ -135,7 +135,7 @@ if ENV:
     MONGO_DB = os.environ.get("MONGO_DB", "AvengerOP")
     MONGO_URI = os.environ.get("MONGO_URI")
     MONGO_PORT = os.environ.get("MONGO_PORT")
-
+    ENABLED_LOCALES = os.environ.get("ENABLED_LOCALES", "en")
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
 
     try:
