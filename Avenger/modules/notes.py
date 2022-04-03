@@ -79,7 +79,7 @@ async def get_note_func(c: app, m: Message, note_name, priv_notes_status):
                     [
                         (
                             "Click Me!",
-                            f"https://t.me/szRosebot?start=note_{m.chat.id}_{note_hash}",
+                            f"https://t.me/AvengerBot?start=note_{m.chat.id}_{note_hash}",
                             "url",
                         ),
                     ],
@@ -304,7 +304,7 @@ async def priv_notes(_, m: Message):
     return
 
 
-@app.on_message(command("notes") & filters.group & ~filters.bot)
+@app.on_message(command(["notes", "notes@AvengerBot")] & filters.group & ~filters.bot)
 async def local_notes(_, m: Message):
     getnotes = db.get_all_notes(m.chat.id)
 
@@ -322,7 +322,7 @@ async def local_notes(_, m: Message):
                 [
                     (
                         "All Notes",
-                        f"https://t.me/szRosebot?start=notes_{m.chat.id}",
+                        f"https://t.me/AvengerBot?start=notes_{m.chat.id}",
                         "url",
                     ),
                 ],
@@ -337,7 +337,7 @@ async def local_notes(_, m: Message):
 
     rply = f"Notes in <b>{m.chat.title}</b>:\n"
     for x in getnotes:
-        rply += f"× <code>#{x[0]}</code>\n"
+        rply += f"<code>#{x[0]}</code>\n"
     rply += "\nYou can get a note by #notename or <code>/get notename</code>"
 
     await m.reply_text(rply, reply_to_message_id=msg_id)
@@ -361,7 +361,7 @@ async def clear_note(_, m: Message):
     return
 
 
-@app.on_message(command("clearall") & owner_filter & ~filters.bot)
+@app.on_message(command[("clearall", "clearall@AvengerBot")] & owner_filter & ~filters.bot)
 async def clear_allnote(_, m: Message):
 
     all_notes = {i[0] for i in db.get_all_notes(m.chat.id)}
