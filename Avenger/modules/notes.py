@@ -5,9 +5,6 @@ from pyrogram.errors import RPCError
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, Message
 from Avenger import pbot as app
 from Avenger.mongos.notes_db import Notes, NotesSettings
-import Avenger.mongos.notes_db as notesdb
-from Avenger.mongos.notes_db import count_all_notes
-
 from Avenger.ex_utils.cmd_senders import send_cmd
 from Avenger.ex_utils.custom_filters import admin_filter, command, owner_filter
 from Avenger.ex_utils.kbhelpers import rkb as ikb
@@ -398,9 +395,6 @@ async def clearallnotes_callback(_, q: CallbackQuery):
     db.rm_all_notes(q.message.chat.id)
     await q.message.edit_text("Cleared all notes!")
     return
-
-def __stats__():
-    return f"≛≛ <b><b>ᴛᴏᴛᴀʟ ɴᴏᴛᴇꜱ :</b></b> {notesdb.count_all_notes()}"
 
 
 __mod_name__ = "Nᴏᴛᴇꜱ"
