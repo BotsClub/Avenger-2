@@ -304,7 +304,7 @@ async def priv_notes(_, m: Message):
     return
 
 
-@app.on_message(command(["notes", "notes@AvengerBot")] & filters.group & ~filters.bot)
+@app.on_message(command(["notes", "notes@AvengerBot"]) & filters.group & ~filters.bot)
 async def local_notes(_, m: Message):
     getnotes = db.get_all_notes(m.chat.id)
 
@@ -361,7 +361,7 @@ async def clear_note(_, m: Message):
     return
 
 
-@app.on_message(command[("clearall", "clearall@AvengerBot")] & owner_filter & ~filters.bot)
+@app.on_message(command(["clearall", "clearall@AvengerBot"]) & owner_filter & ~filters.bot)
 async def clear_allnote(_, m: Message):
 
     all_notes = {i[0] for i in db.get_all_notes(m.chat.id)}
