@@ -6,7 +6,7 @@ from pyrogram.errors import RPCError, UserNotParticipant
 from pyrogram.filters import create
 from pyrogram.types import CallbackQuery, Message
 from Avenger import BOT_ID
-from Avenger.modules.no_sql import DISABLED_COMMANDS as DISABLED_CMDS
+from Avenger.modules.no_sql.disable_db import DISABLED_COMMANDS as DISABLED_CMDS
 from Avenger.ex_utils.caching import ADMIN_CACHE, admin_cache_reload
 
 DEV_USERS = ""
