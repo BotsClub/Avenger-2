@@ -5,7 +5,8 @@ from pyrogram.errors import RPCError
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, Message
 from Avenger import pbot as app
 from Avenger.mongos.notes_db import Notes, NotesSettings
-from Avenger.mongos.notes_db as notesdb
+import Avenger.mongos.notes_db as notesdb
+from Avenger.mongos.notes_db import count_all_notes
 
 from Avenger.ex_utils.cmd_senders import send_cmd
 from Avenger.ex_utils.custom_filters import admin_filter, command, owner_filter
