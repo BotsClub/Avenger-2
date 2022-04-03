@@ -397,7 +397,7 @@ async def clearallnotes_callback(_, q: CallbackQuery):
     return
 
 def __stats__():
-    return f"≛≛ <b><b>ᴛᴏᴛᴀʟ ɴᴏᴛᴇꜱ :</b></b> {(notes_db.count_all_notes())}"
+    return f"≛≛ <b><b>ᴛᴏᴛᴀʟ ɴᴏᴛᴇꜱ :</b></b> {(db.count_all_notes())}"
 
 __mod_name__ = "Nᴏᴛᴇꜱ"
 __help__ = """
