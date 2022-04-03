@@ -218,6 +218,7 @@ else:
     MONGO_DB = Config.MONGO_DB
     MONGO_URI = Config.MONGO_URI
     MONGO_PORT = Config.MONGO_PORT
+    ENABLED_LOCALES = Config.ENABLED_LOCALES
 
     try:
         BL_CHATS = {int(x) for x in Config.BL_CHATS or []}
