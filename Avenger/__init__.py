@@ -135,7 +135,7 @@ if ENV:
     MONGO_DB = os.environ.get("MONGO_DB", "AvengerOP")
     MONGO_URI = os.environ.get("MONGO_URI")
     MONGO_PORT = os.environ.get("MONGO_PORT")
-    ENABLED_LOCALES = os.environ.get("ENABLED_LOCALES", "en")
+    
     ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
 
     try:
@@ -218,7 +218,6 @@ else:
     MONGO_DB = Config.MONGO_DB
     MONGO_URI = Config.MONGO_URI
     MONGO_PORT = Config.MONGO_PORT
-    ENABLED_LOCALES = Config.ENABLED_LOCALES
 
     try:
         BL_CHATS = {int(x) for x in Config.BL_CHATS or []}
