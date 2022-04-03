@@ -5,7 +5,7 @@ from telegram import ParseMode, Message
 from telegram.error import BadRequest
 from telegram.ext import CommandHandler
 
-import Avenger.mongos.notesdb as sql
+from Avenger.mongos import notesdb as sql
 from Avenger import dispatcher, LOGGER, OWNER_ID, JOIN_LOGGER, SUPPORT_CHAT
 from Avenger.__main__ import DATA_IMPORT
 from Avenger.modules.helper_funcs.chat_status import user_admin
