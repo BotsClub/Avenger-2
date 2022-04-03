@@ -3,7 +3,7 @@ from threading import RLock
 from time import time
 
 from Avenger.database import MongoDB
-from Avenger.utils.msg_types import Types
+from Avenger.modules.helper_funcs.utils.msg_types import Types
 
 INSERTION_LOCK = RLock()
 
