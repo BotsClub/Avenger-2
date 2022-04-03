@@ -35,7 +35,7 @@ from Avenger.modules.helper_funcs.extraction import (
     extract_user_and_text,
 )
 from Avenger.modules.helper_funcs.misc import send_to_list
-from Avenger.modules.no_sql.users_db import get_user_com_chats
+from Avenger.modules.no_sql.users_db import get_user_com_chats, get_all_chats
 
 GBAN_ENFORCE_GROUP = 6
 
@@ -324,7 +324,7 @@ def ungban(update: Update, context: CallbackContext):
     else:
         send_to_list(bot, DRAGONS + DEMONS, log_message, html=True)
 
-    chats = get_user_com_chats(user_id)
+    chats = get_all_chats(user_id)
     ungbanned_chats = 0
 
     for chat in chats:
