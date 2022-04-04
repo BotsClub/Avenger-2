@@ -96,7 +96,7 @@ async def rm_deletedacc(show):
 
 
 __help__ = """
-/zombies : Find Deleted accounts in your group
+/zombies : Find Deleted accounts in your group.
 /zombies clean : Clean Deleted Accounts from Your Group
 /kickthefools : remove and ban in-active account from your group
 """
