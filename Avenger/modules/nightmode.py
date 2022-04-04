@@ -5,7 +5,7 @@ from telethon import *
 from telethon.tl.types import ChatBannedRights
 
 from Avenger.events import register
-from Avenger import db
+from Avenger import _DB as db
 from Avenger import telethn as tbot
 
 nightmod = db.nightmode
