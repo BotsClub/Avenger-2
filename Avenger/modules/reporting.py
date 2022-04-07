@@ -8,7 +8,7 @@ from Avenger import LOGGER, DRAGONS
 from Avenger import pbot as Alita
 from Avenger.mongos.reporting_db import Reporting
 from Avenger.ex_utils.custom_filters import admin_filter, command
-from Avenger.ex_utils.kbhelpers import ikb
+from Avenger.ex_utils.kbhelpers import rkb as ikb
 from Avenger.ex_utils.parser import mention_html
 
 
