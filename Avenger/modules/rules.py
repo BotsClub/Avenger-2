@@ -1,153 +1,136 @@
-from typing import Optional
+from pyrogram import filters
+from pyrogram.types import CallbackQuery, Message
 
-import Avenger.modules.sql.rules_sql as sql
-from Avenger import dispatcher
-from Avenger.modules.helper_funcs.chat_status import user_admin
-from Avenger.modules.helper_funcs.string_handling import markdown_parser
-from telegram import (
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    Message,
-    ParseMode,
-    Update,
-    User,
-)
-from telegram.error import BadRequest
-from telegram.ext import CallbackContext, CommandHandler, Filters
-from telegram.utils.helpers import escape_markdown
+from Avenger import *
+from Avenger.mongos.rulesdb import Rules
+from Avenger.ex_utils.custom_filters import admin_filter, command
+from Avenger.utils.kbhelpers import rkb as ikb
 
 
-def get_rules(update: Update, context: CallbackContext):
-    chat_id = update.effective_chat.id
-    send_rules(update, chat_id)
 
+@app.on_message(command("rules") & filters.group)
+async def get_rules(_, m: Message):
+    db = Rules(m.chat.id)
+    msg_id = m.reply_to_message.message_id if m.reply_to_message else m.message_id
 
-# Do not async - not from a handler
-def send_rules(update, chat_id, from_pm=False):
-    bot = dispatcher.bot
-    user = update.effective_user  # type: Optional[User]
-    reply_msg = update.message.reply_to_message
-    try:
-        chat = bot.get_chat(chat_id)
-    except BadRequest as excp:
-        if excp.message == "Chat not found" and from_pm:
-            bot.send_message(
-                user.id,
-                "The rules shortcut for this chat hasn't been set properly! Ask admins to "
-                "fix this.\nMaybe they forgot the hyphen in ID",
-            )
-            return
-        raise
+    rules = db.get_rules()
+    if m and not m.from_user:
+        return
 
-    rules = sql.get_rules(chat_id)
-    text = f"The rules for *{escape_markdown(chat.title)}* are:\n\n{rules}"
-
-    if from_pm and rules:
-        bot.send_message(
-            user.id,
-            text,
-            parse_mode=ParseMode.MARKDOWN,
-            disable_web_page_preview=True,
+    if not rules:
+        await m.reply_text("The Admins for this group have not setup rules!",
+            quote=True,
         )
-    elif from_pm:
-        bot.send_message(
-            user.id,
-            "The group admins haven't set any rules for this chat yet. "
-            "This probably doesn't mean it's lawless though...!",
-        )
-    elif rules and reply_msg:
-        reply_msg.reply_text(
-            "Please click the button below to see the rules.",
-            reply_markup=InlineKeyboardMarkup(
+        return
+
+    priv_rules_status = db.get_privrules()
+
+    if priv_rules_status:
+        pm_kb = ikb(
+            [
                 [
-                    [
-                        InlineKeyboardButton(
-                            text="Rules",
-                            url=f"t.me/{bot.username}?start={chat_id}",
-                        ),
-                    ],
+                    (
+                        "Rules",
+                        f"https://t.me/{BOT_USERNAME}?start=rules_{m.chat.id}",
+                        "url",
+                    ),
                 ],
-            ),
+            ],
         )
-    elif rules:
-        update.effective_message.reply_text(
-            "Please click the button below to see the rules.",
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            text="Rules",
-                            url=f"t.me/{bot.username}?start={chat_id}",
-                        ),
-                    ],
-                ],
-            ),
+        await m.reply_text("Click on the below button to see this group rules!",
+            quote=True,
+            reply_markup=pm_kb,
+            reply_to_message_id=msg_id,
         )
+        return
+
+    await m.reply_text(f"The rules for <b>{m.chat.title} are:</b>\n {rules}",
+        disable_web_page_preview=True,
+        reply_to_message_id=msg_id,
+    )
+    return
+
+
+@app.on_message(command("setrules") & admin_filter)
+async def set_rules(_, m: Message):
+    db = Rules(m.chat.id)
+    if m and not m.from_user:
+        return
+
+    if m.reply_to_message and m.reply_to_message.text:
+        rules = m.reply_to_message.text.markdown
+    elif (not m.reply_to_message) and len(m.text.split()) >= 2:
+        rules = m.text.split(None, 1)[1]
     else:
-        update.effective_message.reply_text(
-            "The group admins haven't set any rules for this chat yet. "
-            "This probably doesn't mean it's lawless though...!",
-        )
+        return await m.reply_text("Provide some text to set as rules !!")
+    db.set_rules(rules)
+    await m.reply_text("Successfully set rules for this group.")
+    return
 
 
-@user_admin
-def set_rules(update: Update, context: CallbackContext):
-    chat_id = update.effective_chat.id
-    msg = update.effective_message  # type: Optional[Message]
-    raw_text = msg.text
-    args = raw_text.split(None, 1)  # use python's maxsplit to separate cmd and args
-    if len(args) == 2:
-        txt = args[1]
-        offset = len(txt) - len(raw_text)  # set correct offset relative to command
-        markdown_rules = markdown_parser(
-            txt,
-            entities=msg.parse_entities(),
-            offset=offset,
-        )
+@app.on_message(
+    command(["pmrules", "privaterules"]) & admin_filter,
+)
+async def priv_rules(_, m: Message):
+    db = Rules(m.chat.id)
+    if m and not m.from_user:
+        return
 
-        sql.set_rules(chat_id, markdown_rules)
-        update.effective_message.reply_text("Successfully set rules for this group.")
+    if len(m.text.split()) == 2:
+        option = (m.text.split())[1]
+        if option in ("on", "yes"):
+            db.set_privrules(True)
+            msg = f"Private Rules have been turned <b>on</b> for chat <b>{m.chat.title}</b>"
+        elif option in ("off", "no"):
+            db.set_privrules(False)
+            msg = f"Private Rules have been turned <b>off</b> for chat <b>{m.chat.title}</b>"
+        else:
+            msg = "Option not valid, choose from <code>on</code>, <code>yes</code>, <code>off</code>, <code>no</code>"
+        await m.reply_text(msg)
+    elif len(m.text.split()) == 1:
+        curr_pref = db.get_privrules()
+        msg = f"Current Preference for Private rules in this chat is: <b>{curr_pref}</b>"
+        await m.reply_text(msg)
+    else:
+        await m.replt_text("Please check help on how to use this this command.")
 
-
-@user_admin
-def clear_rules(update: Update, context: CallbackContext):
-    chat_id = update.effective_chat.id
-    sql.set_rules(chat_id, "")
-    update.effective_message.reply_text("Successfully cleared rules!")
-
-
-def __import_data__(chat_id, data):
-    # set chat rules
-    rules = data.get("info", {}).get("rules", "")
-    sql.set_rules(chat_id, rules)
+    return
 
 
-def __migrate__(old_chat_id, new_chat_id):
-    sql.migrate_chat(old_chat_id, new_chat_id)
+@app.on_message(command("clearrules") & admin_filter)
+async def clear_rules(_, m: Message):
+    db = Rules(m.chat.id)
+    if m and not m.from_user:
+        return
+
+    rules = db.get_rules()
+    if not rules:
+        await m.reply_text("The Admins for this group have not setup rules! ")
+        return
+
+    await m.reply_text("Are you sure you want to clear rules?",
+        reply_markup=ikb(
+            [[("⚠️ Confirm", "clear_rules"), ("❌ Cancel", "close_admin")]],
+        ),
+    )
+    return
 
 
-def __chat_settings__(chat_id, user_id):
-    return f"This chat has had it's rules set: `{bool(sql.get_rules(chat_id))}`"
+@app.on_callback_query(filters.regex("^clear_rules$"))
+async def clearrules_callback(_, q: CallbackQuery):
+    Rules(q.message.chat.id).clear_rules()
+    await q.message.edit_text("Successfully cleared rules for this group!")
+    await q.answer("Rules for the chat have been cleared!", show_alert=True)
+    return
 
 
+__mod_name__ = "Rules"
 __help__ = """
-/rules: get the rules for this chat.
-Admins only:
-/setrules <your rules here>: set the rules for this chat.
-/clearrules: clear the rules for this chat.
+Every chat works with different rules; this module will help make those rules clearer!
+**User commands:**
+/rules: Check the current chat rules.
+**Admin commands:**
+/setrules `<text>`: Set the rules for this chat. Supports markdown, buttons, fillings, etc.
+/privaterules `<yes/no/on/off>`: Enable/disable whether the rules should be sent in private.
+/clearrules: Reset the chat rules to default.
 """
-__mod_name__ = "Rᴜʟᴇꜱ"
-
-GET_RULES_HANDLER = CommandHandler(
-    "rules", get_rules, filters=Filters.chat_type.groups, run_async=True
-)
-SET_RULES_HANDLER = CommandHandler(
-    "setrules", set_rules, filters=Filters.chat_type.groups, run_async=True
-)
-RESET_RULES_HANDLER = CommandHandler(
-    "clearrules", clear_rules, filters=Filters.chat_type.groups, run_async=True
-)
-
-dispatcher.add_handler(GET_RULES_HANDLER)
-dispatcher.add_handler(SET_RULES_HANDLER)
-dispatcher.add_handler(RESET_RULES_HANDLER)
