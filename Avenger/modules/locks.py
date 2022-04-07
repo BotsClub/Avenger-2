@@ -316,7 +316,20 @@ async def prevent_approved(m: Message):
         await sleep(0.1)
     return
 
+__help__ = """
+*Admin only:*
+/lock <permission>: Lock Chat permission..
+/unlock <permission>: Unlock Chat permission.
+/locks: View Chat permission.
+/locktypes: Check available lock types!
 
+Locks can be used to restrict a group's users.
+Locking urls will auto-delete all messages with urls, locking stickers will delete all stickers, etc.
+Locking bots will stop non-admins from adding bots to the chat.
+
+*Example:*
+/lock media: this locks all the media messages in the chat.
+"""
 __mod_name__ = "locks"
 
 __alt_name__ = ["grouplock", "lock", "grouplocks"]
