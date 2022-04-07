@@ -1,7 +1,7 @@
 from threading import RLock
 from time import time
 
-from Avenger.mongo import MongoDB
+from Avenger.mongos import MongoDB
 
 INSERTION_LOCK = RLock()
 
