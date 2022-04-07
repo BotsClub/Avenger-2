@@ -4,7 +4,7 @@ from pyrogram.types import CallbackQuery, Message
 from Avenger import *
 from Avenger.mongos.rulesdb import Rules
 from Avenger.ex_utils.custom_filters import admin_filter, command
-from Avenger.utils.kbhelpers import rkb as ikb
+from Avenger.ex_utils.kbhelpers import rkb as ikb
 
 
 
