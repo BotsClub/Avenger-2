@@ -6,7 +6,6 @@ from pyrogram.types import ChatPermissions, Message
 from Avenger import LOGGER
 from Avenger import pbot as Alita
 from Avenger.mongos.approve_db import Approve
-from Avenger.tr_engine import tlang
 from Avenger.ex_utils.custom_filters import command, restrict_filter
 
 
