@@ -5,7 +5,7 @@ from Avenger import *
 from Avenger.mongos.rulesdb import Rules
 from Avenger.ex_utils.custom_filters import admin_filter, command
 from Avenger.ex_utils.kbhelpers import rkb as ikb
-
+from Avenger import pbot as app
 
 
 @app.on_message(command("rules") & filters.group)
