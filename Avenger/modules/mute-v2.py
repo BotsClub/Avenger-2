@@ -525,3 +525,13 @@ async def unmutebutton(c: app, q: CallbackQuery):
         return
     await q.message.edit_text(f"{q.from_user.mention} unmuted {whoo.mention}!")
     return
+
+__help__ = """
+/mute: Mute a user.
+/dmute: Mute a user by reply, and delete their message.
+/smute: Silently mute a user, and delete your message.
+/tmute: Temporarily mute a user. Example time values: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks.
+/unmute: Unmute a user.
+"""
+
+__mod_name__ = "Mᴜᴛɪɴɢ"
