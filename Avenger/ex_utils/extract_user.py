@@ -9,7 +9,7 @@ from Avenger.modules.no_sql.users_db as Users
 
 
 async def extract_user(c: Alita, m: Message) -> Tuple[int, str, str]:
-    """Extract the user from the provided message."""
+    """Extract the user from the provided message.."""
     user_id = None
     user_first_name = None
     user_name = None
