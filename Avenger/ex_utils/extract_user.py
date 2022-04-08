@@ -4,7 +4,7 @@ from typing import Tuple
 from pyrogram.types.messages_and_media.message import Message
 
 from Avenger import LOGGER
-from Avenger import pbot Alita
+from Avenger import pbot as Alita
 from Avenger.modules.no_sql.users_db as Users
 
 
