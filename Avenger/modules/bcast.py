@@ -22,9 +22,7 @@ import wget
 import os
 import sys
 from Avenger.modules.no_sql import users_db as db
-from git import Repo
 from os import system, execle, environ
-from git.exc import InvalidGitRepositoryError
 from pyrogram.types import Message
 from pyrogram import Client, filters
 
