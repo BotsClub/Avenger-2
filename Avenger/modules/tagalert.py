@@ -286,7 +286,7 @@ async def mentioned_alert(client, message):
             return message.continue_propagation()
         user_ = message.from_user.mention or f"@{message.from_user.username}"
 
-        final_tagged_msg = f"**🔔 You Have Been** [Tagged]({tagged_msg_link}) **in** {chat_name} **By** {user_}"
+        final_tagged_msg = f"**📨 You Have Been Tagged**\n\n**• Group :-** {chat_name}\n**• By User :-** {user_}"
         button_s = InlineKeyboardMarkup(
             [[InlineKeyboardButton("🔔 View Message 🔔", url=tagged_msg_link)]]
         )
