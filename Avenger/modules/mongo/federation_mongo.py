@@ -1,4 +1,5 @@
 from Avenger import db
+from typing import Dict, List, Union
 
 federation = db.federation
 
