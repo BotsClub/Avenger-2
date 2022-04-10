@@ -333,3 +333,12 @@ from Avenger.modules.helper_funcs.handlers import (
 tg.RegexHandler = CustomRegexHandler
 tg.CommandHandler = CustomCommandHandler
 tg.MessageHandler = CustomMessageHandler
+
+TELEGRAM_SERVICES_IDs = (
+    [
+        777000, # Telegram Service Notifications
+        1087968824 # GroupAnonymousBot
+    ]
+)
+
+GROUP_ANONYMOUS_BOT = 1087968824
