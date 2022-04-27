@@ -3,8 +3,37 @@ from Avenger.modules.disable import DisableAbleCommandHandler
 from Avenger.modules.helper_funcs.alternate import typing_action
 from telegram import ParseMode
 from telegram.ext import run_async
+from Avenger.modules.helper_funcs.chatstatus import sudo_plus
 
 normiefont = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+]
+sendfont = [
     "a",
     "b",
     "c",
@@ -473,6 +502,33 @@ def lined(update, context):
     else:
         message.reply_text(string)
 
+@sudo_plus
+@typing_action
+def send(update, context):
+    args = context.args
+    message = update.effective_message
+    string = ""
+
+    if message.reply_to_message:
+        string = message.reply_to_message.text.lower().replace(" ", "  ")
+
+    if args:
+        string = "  ".join(args).lower()
+
+    if not string:
+        message.reply_text("Usage is `/send <text>`", parse_mode=ParseMode.MARKDOWN)
+        return
+
+    for normiecharacter in string:
+        if normiecharacter in normiefont:
+            sendcharacter = sendfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, sendcharacter)
+
+    if message.reply_to_message:
+        message.reply_to_message.reply_text(string)
+    else:
+        message.reply_text(string)
+
 
 __help__ = """
 /weebify <some text or reply with text> : For Change the font
@@ -494,6 +550,7 @@ FSQUARE_HANDLER = DisableAbleCommandHandler("fsquare", fsquare, run_async=True)
 BLUE_HANDLER = DisableAbleCommandHandler("blue", blue, run_async=True)
 LATIN_HANDLER = DisableAbleCommandHandler("latin", latin, run_async=True)
 LINED_HANDLER = DisableAbleCommandHandler("lined", lined, run_async=True)
+SEND_HANDLER = DisableAbleCommandHandler("send", send, run_async=True)
 
 dispatcher.add_handler(WEEBIFY_HANDLER)
 dispatcher.add_handler(BUBBLE_HANDLER)
@@ -503,6 +560,7 @@ dispatcher.add_handler(FSQUARE_HANDLER)
 dispatcher.add_handler(BLUE_HANDLER)
 dispatcher.add_handler(LATIN_HANDLER)
 dispatcher.add_handler(LINED_HANDLER)
+dispatcher.add_handler(SEND_HANDLER)
 
 __command_list__ = ["weebify"]
 __command_list__ = ["bubble"]
@@ -512,6 +570,7 @@ __command_list__ = ["fsquare"]
 __command_list__ = ["blue"]
 __command_list__ = ["latin"]
 __command_list__ = ["lined"]
+__command_list__ = ["send"]
 __handlers__ = [WEEBIFY_HANDLER]
 __handlers__ = [BUBBLE_HANDLER]
 __handlers__ = [FBUBBLE_HANDLER]
@@ -520,3 +579,4 @@ __handlers__ = [FSQUARE_HANDLER]
 __handlers__ = [BLUE_HANDLER]
 __handlers__ = [LATIN_HANDLER]
 __handlers__ = [LINED_HANDLER]
+__handlers__ = [SEND_HANDLER]
